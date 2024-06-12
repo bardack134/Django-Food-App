@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cargar estilos CSS personalizados desde archivos estáticos -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>Food list</h1>
+
+<ul>
+    {% for item in item_list %}
+
+    <li>{{ item.item_name }} - {{ item.item_description }} - <a href="{% url 'food:detail' item.id %}">See details</a></li>
+  
+{% endfor %}
+</ul>
+
+</body>
+</html>
