@@ -16,8 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+# Import the global settings of the Django project from settings.py
+from django.conf import settings
+
+# Import the 'static' function to handle static and media files
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("food/", include("food.urls")),
 ]
+
+# Configuration for serving static and media files during development
+
+if settings.DEBUG:
+    # Add URLs to serve media files (MEDIA_URL) using the file system path specified in MEDIA_ROOT
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

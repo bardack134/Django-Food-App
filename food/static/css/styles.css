@@ -2,3 +2,17 @@
     background-color: #FDE767;
     
 }
+
+.amatic-sc-bold {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+
+  
+.roboto-flex {
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 150;
+}
+
