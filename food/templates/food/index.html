@@ -4,36 +4,45 @@
 
 <body>
     {% block content %}
-    
+
     <h1>Food list</h1>
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-lg-4 menu-item">
+                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                <h4>Magnam Tiste</h4>
+                <p class="ingredients">
+                    Lorem, deren, trataro, filede, nerada
+                </p>
+                <p class="price">
+                    $5.95
+                </p>
+            </div><!-- Menu Item -->
+    
+            <div class="col-lg-4 menu-item">
+                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
+                <h4>Aut Luia</h4>
+                <p class="ingredients">
+                    Lorem, deren, trataro, filede, nerada
+                </p>
+                <p class="price">
+                    $14.95
+                </p>
+            </div><!-- Menu Item -->
+    
+            <div class="col-lg-4 menu-item">
+                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
+                <h4>Est Eligendi</h4>
+                <p class="ingredients">
+                    Lorem, deren, trataro, filede, nerada
+                </p>
+                <p class="price">
+                    $8.95
+                </p>
+            </div><!-- Menu Item -->
+        </div>
+    </div><!-- End Starter Menu Content -->
+    
 
-    <ul>
-        {% for item in item_list %}
-
-        <div class="container text-center">
-            <div class="row">
-              <div class="col-md-3 offset-md-2">.col-md-4
-                    <img class="card" height="150px" src="{{ item.imagen.url }}" alt="Food picture" >
-
-              </div>
-              
-              <div class="col-md-4 ">.col-md-4 .offset-md-4
-
-
-              </div>
-              <div class="col-md-2 offset-md-4">.col-md-4 .offset-md-4
-
-
-              </div>
-            </div>
-           
-        </div>    
-
-<!-- 
-        <li>{{ item.item_name }} - {{ item.item_description }} - <a href="{% url 'food:detail' item.id %}">See
-                details</a></li> -->
-
-        {% endfor %}
-    </ul>
     {% endblock %}
 </body>
