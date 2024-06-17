@@ -22,6 +22,16 @@
     font-style: normal;
     font-size: 60px;
 }
+.nunito-sans  {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+    font-size: 28px;  
+}
 
 .card-img {
     height: 10px; /* Establece la altura deseada */
@@ -48,6 +58,7 @@
 
 .red_color{
     color:  #D04848;
+    font-size: 26px;  
 }
 
 .orange_color{
