@@ -50,115 +50,108 @@
                 <div class="row gy-5">
 
                     {% for item in item_list %}
-                    <div class="col-lg-4">
-                        <!-- Makes the image responsive inside its parent container. -->
-                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}" class="img-fluid"
-                                style="height: 210px;" alt=""></a>
-                        <h4>{{ item.item_name }}</h4>
-                        <p class="">
-                            {{ item.item_description }}
-                        </p>
-                        <p class="">
-                            ${{ item.item_price }}
-                        </p>
-
-                        <!-- data-bs-target="..."  is connected to the id in our model window-->
-                        <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}" class="btn btn-info"
-                            style="background-color: #F3B95F; border-color: #F3B95F;">
-                            View details
-                        </a>
-                    </div>
-
-                    <!-- Vertically centered modal -->
-                    <!-- modal fade: Creates a modal dialog that fades in and out. -->
-                    <div class="modal fade" id="detallesModal{{ item.id }}" tabindex="-1"
-                        aria-labelledby="detallesModalLabel{{ item.id }}" aria-hidden="true" s>
-                        <!-- modal-dialog modal-dialog-centered: Centers the modal vertically and horizontally. -->
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <!-- modal-content: Creates the content area of the modal. -->
-                            <!-- START MODAL CONTENT -->
-                            <div class="modal-content">
-                                <div class="ld-over p-2">
-                                    <div class="row variant-fancy-box">
-                                        <div class="col-12 col-md-2 p-0">
-                                            <div class="text-center one-photo-quick">
-                                                <div class="image">
-                                                    <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                        class="lazy" src="{{ item.imagen.url }}" width="320"
-                                                        height="320">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 offset-md-4">
-                                            <div class="product-head mb-3">
-                                                <div class="product-title nunito-sans">
-                                                    {{ item.item_name }}
-                                                </div>
-                                                <!-- <small class="product-unit">
-                                                    <strong>750ml</strong>
-                                                </small> -->
-                                                <!-- <small class="sku-code">SKU: 8410702044936</small> -->
-                                            </div>
-
-                                            <div class="grey-action hero">
-                                                <div class="price-from">Precio</div>
-                                                <div class="product-detail-price clearfix">
-                                                    <div class="product-prices">
-                                                        <span class="number-price">
-                                                            <span class="total-options red_color" data-price="17528.0">
-                                                                ${{item.item_price }}</span>                                                        
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <form class="clearfix product-show-form" action="/es/line_items"
-                                                accept-charset="UTF-8" data-remote="true" method="post">
-                                                <input type="hidden" name="authenticity_token"
-                                                    value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
-                                                    autocomplete="off">
-                                                <input type="hidden" name="product_hash"
-                                                    value="8285132b-5a28-4542-98e3-11027c3ef866" autocomplete="off">
-                                                <input type="hidden" name="variant_hash"
-                                                    value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
-                                                <div class="white-action">
-                                                    <div class="product-row clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
-                                                        <div class="qty-block">
-                                                            <div class="qty-square-buttons">
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square minus-square"
-                                                                    data-type="minus" disabled="disabled"><i
-                                                                        class="far fa-minus"></i></button>
-                                                                <div class="qty-input">
-                                                                    <input type="number" name="quantity"
-                                                                        id="quantity-{{ item.id }}" value="1"
-                                                                        class="qty-field focused" autocomplete="off"
-                                                                        min="1" max="999" data-min="1" data-max="2"
-                                                                        data-default="1" data-factor="1">
-                                                                </div>
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square plus-square"
-                                                                    data-type="plus"><i class="far fa-plus"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-row clearfix">
-                                                        
-                                                        <button type="button" class=" btn btn-success" style="width: 100%;">
-                                                            Add to Car
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                        </div>
+                    <div class="col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}" class="img-fluid" style="height: 210px;" alt=""></a>
                                     </div>
-                                    <div class="ld ld-ring ld-spin"></div>
+                                    <div class="col-md-7">
+                                        <h4>{{ item.item_name }}</h4>
+                                        <p class="">
+                                            {{ item.item_description }}
+                                        </p>
+                                        <small class="sku-code">SKU: {{ item.sku }}</small>
+                                        <p class="">
+                                            ${{ item.item_price }}
+                                        </p>
+                                        <a data-bs-toggle="modal" data-bs-target="#menu-dinnerModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                            View details
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- FINISH MODAL CONTENT -->
+                        </div>
+                    
+                        <!-- Vertically centered modal -->
+                        <div class="modal fade" id="menu-dinnerModal{{ item.id }}" tabindex="-1" aria-labelledby="menu-dinnerModalLabel{{ item.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="ld-over p-2">
+                                        <div class="row variant-fancy-box">
+                                            <div class="col-12 col-md-5 p-0">
+                                                <div class="text-center one-photo-quick">
+                                                    <div class="image">
+                                                        <img alt="{{ item.item_name }}" title="{{ item.item_name }}" class="lazy img-fluid" src="{{ item.imagen.url }}" width="320" height="320">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-7">
+                                                <div class="product-head mb-3">
+                                                    <div class="product-title">{{ item.item_name }}</div>
+                                                    <small class="product-unit"><strong>{{ item.item_unit }}</strong></small>
+                                                    <div class="product-short-description">{{ item.item_description }}</div>
+                                                    <small class="sku-code">SKU: {{ item.sku }}</small>
+                                                </div>
+                                                <div class="mb-3 d-flex go-product">
+                                                    <a class="btn btn-go-detail btn-warning btn-custom" href="/es/productos/{{ item.slug }}">
+                                                        <span>Ver detalle del producto</span>
+                                                    </a>
+                                                </div>
+                                                <div class="grey-action">
+                                                    <div class="price-from">Precio</div>
+                                                    <div class="product-detail-price clearfix">
+                                                        <div class="product-prices">
+                                                            <span class="number-price">
+                                                                <span class="total-options" data-price="{{ item.item_price }}">${{ item.item_price }}</span>
+                                                                <small class="mt-1 pmu-label">Mililitro a ${{ item.price_per_ml }}</small>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <form class="clearfix product-show-form" action="/es/line_items" accept-charset="UTF-8" data-remote="true" method="post">
+                                                    <input type="hidden" name="authenticity_token" value="AUTH_TOKEN" autocomplete="off">
+                                                    <input type="hidden" name="product_hash" value="{{ item.product_hash }}" autocomplete="off">
+                                                    <input type="hidden" name="variant_hash" value="{{ item.variant_hash }}" autocomplete="off">
+                                                    <div class="white-action">
+                                                        <div class="product-row clearfix text-center pt-2 pb-3">
+                                                            <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
+                                                            <div class="qty-block">
+                                                                <div class="qty-square-buttons">
+                                                                    <button name="button" type="button" class="quantity-square minus-square" data-type="minus" disabled="disabled">
+                                                                        <i class="far fa-minus"></i>
+                                                                    </button>
+                                                                    <div class="qty-input">
+                                                                        <input type="number" name="quantity" id="quantity-{{ item.id }}" value="1" class="qty-field focused" autocomplete="off" min="1" max="999" data-min="1" data-max="536" data-default="1" data-factor="1">
+                                                                    </div>
+                                                                    <button name="button" type="button" class="quantity-square plus-square" data-type="plus">
+                                                                        <i class="far fa-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-row clearfix">
+                                                            <button name="button" type="submit" class="btn-mt btn-icon btn-add btn-add-xlg full-block" data-disable-with="<span><i class='far fa-sync-alt fa-spin'></i></span>">
+                                                                <span><i class="far fa-shopping-cart"></i> AGREGAR AL CARRITO</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="fancy-close-link text-center">
+                                                    <span class="close-fancy btn btn-icon btn-warning btn-custom hide-canvas mt-2">
+                                                        <i class="far fa-undo"></i> Volver y seguir comprando
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ld ld-ring ld-spin"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
                     {% endfor %}
                 </div>
             </div>

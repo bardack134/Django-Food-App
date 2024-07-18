@@ -4,7 +4,11 @@ from . import views
 
 app_name='food'
 urlpatterns = [
+    
+    #home　page url
     path("", views.home, name="home"),
+    
     path("item/", views.item, name="item"),
+    
     path("details/<int:item_id>", views.detail, name="detail"),
 ]

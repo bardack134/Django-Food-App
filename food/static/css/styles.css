@@ -34,11 +34,12 @@
 }
 
 .card-img {
-    height: 10px; /* Establece la altura deseada */
+    height: 10px;
     width: auto; 
     /* Ancho automático para mantener la proporción original */
 }
 
+/* grey background color */
 .hero {
     background-color: #F6F5F2;
     

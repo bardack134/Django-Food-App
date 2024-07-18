@@ -1,16 +1,34 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Item
+from .models import DessertsItems, DrinksItems, Item, SidesItems
 from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 def home(request):
-    item_list=Item.objects.all()
-    context = {
-        "item_list": item_list
-        }
-    return render(request, "food/index.html", context)
     
+    # Retrieve all objects from the 'Item' model and assign them to 'item_list'
+    item_list = Item.objects.all()
+    
+    # Retrieve all objects from the 'DrinksItems' model and assign them to 'DrinksItems_list'
+    drinksItems_list = DrinksItems.objects.all()
+    
+    # Retrieve all objects from the 'dessertsItems' model and assign them to 'dessertsItems_list'
+    dessertsItems_list = DessertsItems.objects.all()
+    
+    # Retrieve all objects from the 'SidesItems' model and assign them to 'SidesItems_list'
+    sidesItems_list = SidesItems.objects.all()
+
+    context = {
+        "item_list": item_list,
+        "drinksItems_list": drinksItems_list,
+        "dessertsItems_list": dessertsItems_list,
+        "SidesItems_list": sidesItems_list,
+    }
+    
+
+    return render(request, "food/index2.html", context)
+    
+
 
 # item view.
 def item(request):
@@ -27,9 +45,18 @@ def detail(request, item_id):
 
 
 
-#TODO: CREAR MODELO DE DRINKS, DESSERTS, SIDES
-#TODO: AGREGAR PRODUCTOS A LOS NUEVOS MODELOS
+#TODO:1. create the models where we will store the information about the products offered by the restaurant
+
+#TODO: 2. create the home page and render all the products in the page
+
+#TODO: 3. Create a view called details.html to see the details of the products, in my case the details of the products are seen
+# in the modal window
+
+
+
+#TODO: watch udemy video
 #TODO: ASEGURARSE QUE EL FRONTEND ESTE SIRVIENDO BIEN MOSTRANDO LOS DIFERENTES PRODUCTOS
 #TODO: AL OPRIMIR EL BOTON AGREGAR AL CARRITO LOS PRODUCTOS DEBERIAN AGREGARSE AL CARRITO
 #TODO: DEBE HABER UNA PAGINA CON LOS DETALLES DE LA COMPRA QUE SE VA HACER
 #TODO: CREAR USER SYSTEM
+
