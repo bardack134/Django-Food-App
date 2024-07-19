@@ -69,3 +69,32 @@
     color: #FDE767;
     
 }
+
+
+/* start　cart css */
+/* Estilos para el carrito desplegable */
+.dropdown-menu {
+    min-width: 250px; /* Ancho mínimo del menú desplegable */
+}
+
+.dropdown-item {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 10px; /* Espaciado interno */
+}
+
+.dropdown-item img {
+    width: 50px; /* Tamaño de la imagen */
+    height: 50px;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.dropdown-item button {
+    margin-left: auto; /* Mueve el botón a la derecha */
+}
+
+.dropdown-divider {
+    border-top: 1px solid #e5e5e5; /* Línea divisoria entre elementos */
+}
+
+/* end cart css */

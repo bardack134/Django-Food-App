@@ -46,27 +46,31 @@
         <div class="tab-content">
             <!-- START MAIN MENU -->
             <div class="tab-pane fade active show" id="Main">
-            <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
+                <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
                 <div class="row gy-5">
 
                     {% for item in item_list %}
-                    <div class="col-lg-4">
-                        <!-- Makes the image responsive inside its parent container. -->
-                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}" class="img-fluid"
-                                style="height: 210px;" alt=""></a>
-                        <h4>{{ item.item_name }}</h4>
-                        <p class="">
-                            {{ item.item_description }}
-                        </p>
-                        <p class="">
-                            ${{ item.item_price }}
-                        </p>
+                    <div class="col-lg-3 d-flex">
+                        <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                        <div class="card h-100 d-flex flex-column" style="width: 18rem;">
+                            <div class="card-body d-flex flex-column">
+                                <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
+                                        class="img-fluid" style="height: 210px;" alt=""></a>
+                                <h4>{{ item.item_name }}</h4>
+                                <p class="mt-auto">
+                                    {{ item.item_description }}
+                                </p>
+                                <p class="mt-auto">
+                                    ${{ item.item_price }}
+                                </p>
+                                <div class="mt-auto">
+                                    <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                        View details
+                                    </a>
+                                </div>
 
-                        <!-- data-bs-target="..."  is connected to the id in our model window-->
-                        <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}" class="btn btn-info"
-                            style="background-color: #F3B95F; border-color: #F3B95F;">
-                            View details
-                        </a>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Vertically centered modal -->
@@ -94,19 +98,21 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                <!-- <small class="product-unit">
-                                                    <strong>750ml</strong>
-                                                </small> -->
-                                                <!-- <small class="sku-code">SKU: 8410702044936</small> -->
+                                                
                                             </div>
-
+                                            <div class="product-head mb-3">
+                                                <div class="product-title ">
+                                                    {{ item.item_description }}
+                                                </div>
+                                                
+                                            </div>    
                                             <div class="grey-action hero">
                                                 <div class="price-from">Precio</div>
                                                 <div class="product-detail-price clearfix">
                                                     <div class="product-prices">
                                                         <span class="number-price">
                                                             <span class="total-options red_color" data-price="17528.0">
-                                                                ${{item.item_price }}</span>                                                        
+                                                                ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -122,7 +128,8 @@
                                                     value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
                                                 <div class="white-action">
                                                     <div class="product-row clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <label class="title-option"
+                                                            for="quantity-{{ item.id }}">Cantidad</label>
                                                         <div class="qty-block">
                                                             <div class="qty-square-buttons">
                                                                 <button name="button" type="button"
@@ -138,13 +145,15 @@
                                                                 </div>
                                                                 <button name="button" type="button"
                                                                     class="quantity-square plus-square"
-                                                                    data-type="plus"><i class="far fa-plus"></i></button>
+                                                                    data-type="plus"><i
+                                                                        class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-row clearfix">
-                                                        
-                                                        <button type="button" class=" btn btn-success" style="width: 100%;">
+
+                                                        <button type="button" class=" btn btn-success"
+                                                            style="width: 100%;">
                                                             Add to Car
                                                         </button>
                                                     </div>
@@ -168,22 +177,28 @@
             <!-- DRINKS   MENU -->
             <div class="tab-pane fade" id="drinks">
                 <div class="row gy-5">
-                    {% for item in drinksItems_list %}                    
-                    <div class="col-lg-4">
-                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
-                                class="img-fluid" style="height: 210px;" alt=""></a>
-                        <h4>{{ item.item_name }}</h4>
-                        <p class="">
-                            {{ item.item_description }}
-                        </p>
-                        <p class="">
-                            ${{ item.item_price }}
-                        </p>
+                    {% for item in drinksItems_list %}
+                    <div class="col-lg-3 d-flex">
+                        <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                        <div class="card h-100 d-flex flex-column" style="width: 18rem;">
+                            <div class="card-body d-flex flex-column">
+                                <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
+                                        class="img-fluid" style="height: 210px;" alt=""></a>
+                                <h4>{{ item.item_name }}</h4>
+                                <p class="mt-auto">
+                                    {{ item.item_description }}
+                                </p>
+                                <p class="mt-auto">
+                                    ${{ item.item_price }}
+                                </p>
+                                <div class="mt-auto">
+                                    <a data-bs-toggle="modal" data-bs-target="#drinksModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                        View details
+                                    </a>
+                                </div>
 
-                        <a data-bs-toggle="modal" data-bs-target="#drinksModal{{ item.id }}" class="btn btn-info"
-                            style="background-color: #F3B95F; border-color: #F3B95F;">
-                            View details
-                        </a>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Vertically centered modal -->
@@ -211,19 +226,21 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                <!-- <small class="product-unit">
-                                                    <strong>750ml</strong>
-                                                </small> -->
-                                                <!-- <small class="sku-code">SKU: 8410702044936</small> -->
+                                                
                                             </div>
-
+                                            <div class="product-head mb-3">
+                                                <div class="product-title ">
+                                                    {{ item.item_description }}
+                                                </div>
+                                                
+                                            </div>  
                                             <div class="grey-action hero">
                                                 <div class="price-from">Precio</div>
                                                 <div class="product-detail-price clearfix">
                                                     <div class="product-prices">
                                                         <span class="number-price">
                                                             <span class="total-options red_color" data-price="17528.0">
-                                                                ${{item.item_price }}</span>                                                        
+                                                                ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -239,7 +256,8 @@
                                                     value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
                                                 <div class="white-action">
                                                     <div class="product-row clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <label class="title-option"
+                                                            for="quantity-{{ item.id }}">Cantidad</label>
                                                         <div class="qty-block">
                                                             <div class="qty-square-buttons">
                                                                 <button name="button" type="button"
@@ -248,20 +266,22 @@
                                                                         class="far fa-minus"></i></button>
                                                                 <div class="qty-input">
                                                                     <input type="number" name="quantity"
-                                                                        id="quantity-{{ item.id }}" value="1"
+                                                                       
                                                                         class="qty-field focused" autocomplete="off"
                                                                         min="1" max="999" data-min="1" data-max="2"
                                                                         data-default="1" data-factor="1">
                                                                 </div>
                                                                 <button name="button" type="button"
                                                                     class="quantity-square plus-square"
-                                                                    data-type="plus"><i class="far fa-plus"></i></button>
+                                                                    data-type="plus"><i
+                                                                        class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-row clearfix">
-                                                        
-                                                        <button type="button" class=" btn btn-success" style="width: 100%;">
+
+                                                        <button type="button" class=" btn btn-success"
+                                                            style="width: 100%;">
                                                             Add to Car
                                                         </button>
                                                     </div>
@@ -276,7 +296,7 @@
                             <!-- FINISH MODAL CONTENT -->
                         </div>
                     </div>
-                    
+
                     {% endfor %}
                 </div>
             </div>
@@ -286,25 +306,31 @@
             <!-- START DESSERTS MENU -->
             <div class="tab-pane fade" id="desserts">
                 <div class="row gy-5">
-                    {% for item in dessertsItems_list %}  
-                    <div class="col-lg-4">
-                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
-                                class="img-fluid" style="height: 210px;" alt=""></a>
-                        <h4>{{ item.item_name }}</h4>
-                        <p class="">
-                            {{ item.item_description }}
-                        </p>
-                        <p class="">
-                            ${{ item.item_price }}
-                        </p>                    
+                    {% for item in dessertsItems_list %}
+                    <div class="col-lg-3 d-flex">
+                        <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                        <div class="card h-100 d-flex flex-column" style="width: 18rem;">
+                            <div class="card-body d-flex flex-column">
+                                <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
+                                        class="img-fluid" style="height: 210px;" alt=""></a>
+                                <h4>{{ item.item_name }}</h4>
+                                <p class="mt-auto">
+                                    {{ item.item_description }}
+                                </p>
+                                <p class="mt-auto">
+                                    ${{ item.item_price }}
+                                </p>
+                                <div class="mt-auto">
+                                    <a data-bs-toggle="modal" data-bs-target="#dessertsModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                        View details
+                                    </a>
+                                </div>
 
-                        <a data-bs-toggle="modal" data-bs-target="#dessertsModal{{ item.id }}" class="btn btn-info"
-                            style="background-color: #F3B95F; border-color: #F3B95F;">
-                            View details
-                        </a>
+                            </div>
+                        </div>
                     </div>
 
-                     <!-- Vertically centered modal -->
+                    <!-- Vertically centered modal -->
                     <!-- modal fade: Creates a modal dialog that fades in and out. -->
                     <div class="modal fade" id="dessertsModal{{ item.id }}" tabindex="-1"
                         aria-labelledby="dessertsModalLabel{{ item.id }}" aria-hidden="true" s>
@@ -329,19 +355,21 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                <!-- <small class="product-unit">
-                                                    <strong>750ml</strong>
-                                                </small> -->
-                                                <!-- <small class="sku-code">SKU: 8410702044936</small> -->
+                                               
                                             </div>
-
+                                            <div class="product-head mb-3">
+                                                <div class="product-title ">
+                                                    {{ item.item_description }}
+                                                </div>
+                                                
+                                            </div>  
                                             <div class="grey-action hero">
                                                 <div class="price-from">Precio</div>
                                                 <div class="product-detail-price clearfix">
                                                     <div class="product-prices">
                                                         <span class="number-price">
                                                             <span class="total-options red_color" data-price="17528.0">
-                                                                ${{item.item_price }}</span>                                                        
+                                                                ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -357,7 +385,8 @@
                                                     value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
                                                 <div class="white-action">
                                                     <div class="product-row clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <label class="title-option"
+                                                            for="quantity-{{ item.id }}">Cantidad</label>
                                                         <div class="qty-block">
                                                             <div class="qty-square-buttons">
                                                                 <button name="button" type="button"
@@ -366,20 +395,22 @@
                                                                         class="far fa-minus"></i></button>
                                                                 <div class="qty-input">
                                                                     <input type="number" name="quantity"
-                                                                        id="quantity-{{ item.id }}" value="1"
+                                                                        
                                                                         class="qty-field focused" autocomplete="off"
                                                                         min="1" max="999" data-min="1" data-max="2"
                                                                         data-default="1" data-factor="1">
                                                                 </div>
                                                                 <button name="button" type="button"
                                                                     class="quantity-square plus-square"
-                                                                    data-type="plus"><i class="far fa-plus"></i></button>
+                                                                    data-type="plus"><i
+                                                                        class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-row clearfix">
-                                                        
-                                                        <button type="button" class=" btn btn-success" style="width: 100%;">
+
+                                                        <button type="button" class=" btn btn-success"
+                                                            style="width: 100%;">
                                                             Add to Car
                                                         </button>
                                                     </div>
@@ -394,32 +425,38 @@
                             <!-- FINISH MODAL CONTENT -->
                         </div>
                     </div>
-                    {% endfor %}  
+                    {% endfor %}
                 </div>
             </div>
             <!-- END DESSERTS MENU -->
 
             <!-- START SIDES MENU -->
             <div class="tab-pane fade" id="menu-dinner">
-                <div class="row gy-5">
-                    {% for item in SidesItems_list %}  
-                    <div class="col-lg-4">
-                        <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
-                                class="img-fluid" style="height: 210px;" alt=""></a>
-                        <h4>{{ item.item_name }}</h4>
-                        <p class="">
-                            {{ item.item_description }}
-                        </p>
-                        <p class="">
-                            ${{ item.item_price }}
-                        </p>
-                        <a data-bs-toggle="modal" data-bs-target="#menu-dinnerModal{{ item.id }}" class="btn btn-info"
-                            style="background-color: #F3B95F; border-color: #F3B95F;">
-                            View details
-                        </a>
-                    </div>
+                <div class="row g-4">
+                    {% for item in sidesItems_list %}
+                    <div class="col-lg-3 d-flex">
+                        <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                        <div class="card h-100 d-flex flex-column" style="width: 18rem;">
+                            <div class="card-body d-flex flex-column">
+                                <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}"
+                                        class="img-fluid" style="height: 210px;" alt=""></a>
+                                <h4>{{ item.item_name }}</h4>
+                                <p class="mt-auto">
+                                    {{ item.item_description }}
+                                </p>
+                                <p class="mt-auto">
+                                    ${{ item.item_price }}
+                                </p>
+                                <div class="mt-auto">
+                                    <a data-bs-toggle="modal" data-bs-target="#menu-dinnerModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                        View details
+                                    </a>
+                                </div>
 
-                     <!-- Vertically centered modal -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vertically centered modal -->
                     <!-- modal fade: Creates a modal dialog that fades in and out. -->
                     <div class="modal fade" id="menu-dinnerModal{{ item.id }}" tabindex="-1"
                         aria-labelledby="menu-dinnerModalLabel{{ item.id }}" aria-hidden="true" s>
@@ -444,19 +481,21 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                <!-- <small class="product-unit">
-                                                    <strong>750ml</strong>
-                                                </small> -->
-                                                <!-- <small class="sku-code">SKU: 8410702044936</small> -->
+                                                
                                             </div>
-
+                                            <div class="product-head mb-3">
+                                                <div class="product-title ">
+                                                    {{ item.item_description }}
+                                                </div>
+                                                
+                                            </div>  
                                             <div class="grey-action hero">
                                                 <div class="price-from">Precio</div>
                                                 <div class="product-detail-price clearfix">
                                                     <div class="product-prices">
                                                         <span class="number-price">
                                                             <span class="total-options red_color" data-price="17528.0">
-                                                                ${{item.item_price }}</span>                                                        
+                                                                ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -472,7 +511,8 @@
                                                     value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
                                                 <div class="white-action">
                                                     <div class="product-row clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option" for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <label class="title-option"
+                                                            for="quantity-{{ item.id }}">Cantidad</label>
                                                         <div class="qty-block">
                                                             <div class="qty-square-buttons">
                                                                 <button name="button" type="button"
@@ -481,20 +521,22 @@
                                                                         class="far fa-minus"></i></button>
                                                                 <div class="qty-input">
                                                                     <input type="number" name="quantity"
-                                                                        id="quantity-{{ item.id }}" value="1"
+                                                                       
                                                                         class="qty-field focused" autocomplete="off"
                                                                         min="1" max="999" data-min="1" data-max="2"
                                                                         data-default="1" data-factor="1">
                                                                 </div>
                                                                 <button name="button" type="button"
                                                                     class="quantity-square plus-square"
-                                                                    data-type="plus"><i class="far fa-plus"></i></button>
+                                                                    data-type="plus"><i
+                                                                        class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-row clearfix">
-                                                        
-                                                        <button type="button" class=" btn btn-success" style="width: 100%;">
+
+                                                        <button type="button" class=" btn btn-success"
+                                                            style="width: 100%;">
                                                             Add to Car
                                                         </button>
                                                     </div>

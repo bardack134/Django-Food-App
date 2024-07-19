@@ -22,11 +22,11 @@ def home(request):
         "item_list": item_list,
         "drinksItems_list": drinksItems_list,
         "dessertsItems_list": dessertsItems_list,
-        "SidesItems_list": sidesItems_list,
+        "sidesItems_list": sidesItems_list,
     }
     
 
-    return render(request, "food/index2.html", context)
+    return render(request, "food/index.html", context)
     
 
 
@@ -45,18 +45,19 @@ def detail(request, item_id):
 
 
 
-#TODO:1. create the models where we will store the information about the products offered by the restaurant
+#TODO:1. create the models where we will store the information about the products offered by the restaurant (main, drinks..etc)
 
 #TODO: 2. create the home page and render all the products in the page
 
 #TODO: 3. Create a view called details.html to see the details of the products, in my case the details of the products are seen
 # in the modal window
 
+#TODO: when you press the add to cart button the products should be added to the cart
 
 
-#TODO: watch udemy video
-#TODO: ASEGURARSE QUE EL FRONTEND ESTE SIRVIENDO BIEN MOSTRANDO LOS DIFERENTES PRODUCTOS
-#TODO: AL OPRIMIR EL BOTON AGREGAR AL CARRITO LOS PRODUCTOS DEBERIAN AGREGARSE AL CARRITO
+
+
+
 #TODO: DEBE HABER UNA PAGINA CON LOS DETALLES DE LA COMPRA QUE SE VA HACER
 #TODO: CREAR USER SYSTEM
 
