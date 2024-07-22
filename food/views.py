@@ -52,6 +52,8 @@ def detail(request, item_id):
 #TODO: 3. Create a view called details.html to see the details of the products, in my case the details of the products are seen
 # in the modal window
 
+#TODO: 4. Create the cart in the nav bar
+
 #TODO: when you press the add to cart button the products should be added to the cart
 
 

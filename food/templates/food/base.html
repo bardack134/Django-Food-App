@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +22,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
         rel="stylesheet">
+
+    <!--Font awesome  -->
+    
 </head>
 
 <body>
@@ -33,16 +37,74 @@
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"></use>
                     </svg>
-                    <span class="fs-4" style="color: #FF5733;">Food App</span>
+                    <span class="fs-4" style="color: #D04848;">Food App</span>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2" style="color: #FF5733;">Home</a></li>
-                    <li><a href="#" class="nav-link px-2" style="color: #FF5733;">Menu</a></li>
-                    <li><a href="#" class="nav-link px-2" style="color: #FF5733;">Details</a></li>
+                    <li><a href="#" class="nav-link px-2" style="color: #D04848;">Home</a></li>
+                    <li><a href="#" class="nav-link px-2" style="color: #D04848;">Menu</a></li>
+                    <li><a href="#" class="nav-link px-2" style="color: #D04848;">Details</a></li>
                 </ul>
 
                 <!-- Start Cart -->
-  
+                <!-- ms-auto is used to apply an automatic left margin -->
+                <ul class="navbar-nav ms-auto">
+
+                    <!-- nav item indicates that the element is a navigation item -->
+                    <!-- dropdown: This class is used to create a pull down menu component -->
+                    <li class="nav-item dropdown ">
+
+                        <!-- dropdown-toggle indicates that it is a  pull down menu item. This is the link that opens the  pull down menu. -->
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                           <!-- font awesome -->
+                          
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#d04848" d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+
+                           <!-- end font awesome -->
+                        </a>
+
+                        <!-- "dropdown-menu-end": Align the menu to the right.  -->
+                        <!-- "dropdown-menu": Container for the dropdown menu. The items within this list (<li>) represent the menu options. -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdow">
+                            <!-- aria-labelledby: This attribute indicates that the dropdown menu is associated with the element with the id navbarDropdown, for accessibility.     -->
+
+                            <!-- cart elements -->
+                            <li>
+                                <a class="  dropdown-item" href="#">
+                                    <!-- Each cart item is represented by a dropdown-item.  -->
+
+                                    <div class="container d-flex align-items-center">
+                                        <!-- center and align the content of cart items with container -->
+                                        <img src="http://lorempixel.com/50/50/" alt="" class="img-thumbnail me-2 " />
+                                        <div>
+                                            <span>Item name</span><br>
+                                            <span>$23</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-danger ms-auto">x</button>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <div class="container d-flex align-items-center">
+                                        <!-- we use a d-flex structure to horizontally align the image, text, and delete button. -->
+
+                                        <img src="http://lorempixel.com/50/50/" alt="" class="img-thumbnail me-2" />
+                                        <div>
+                                            <span>Item name</span><br>
+                                            <span>$23</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-danger ms-auto">x</button>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- end cart elements -->
+
+                        </ul>
+
+                    </li>
+                </ul>
                 <!-- Finish Cart -->
             </div>
         </div>
@@ -57,8 +119,10 @@
                         width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3" style="font-family: 'Amatic SC', cursive;">Enjoy Your Healthy <br> Delicious Food</h1>
-                    <p class="lead" style="font-family: 'Roboto Flex', sans-serif;">The best Food you can find in all market</p>
+                    <h1 class="display-5 fw-bold lh-1 mb-3" style="font-family: 'Amatic SC', cursive;">Enjoy Your
+                        Healthy <br> Delicious Food</h1>
+                    <p class="lead" style="font-family: 'Roboto Flex', sans-serif;">The best Food you can find in all
+                        market</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
                         <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
@@ -82,4 +146,5 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
