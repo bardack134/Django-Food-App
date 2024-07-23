@@ -48,14 +48,43 @@ def detail(request, item_id):
 from .cart import Cart
 
 
+def get_product_type(product_type, product_id): 
+    """
+    This function determine what type of model the product belongs to and obtain the product information.
+    """
+    
+    model_type={
+        
+        'itemx':Item,
+        'drinks':DrinksItems,
+        'desserts':DessertsItems,
+        'sides':SidesItems,
+       
+    }
+    
+    
+    # from model_type 'dictionary' get the model type to which the product belongs
+    model=model_type.get(product_type)
+    
+    
+    if model is not None:
+        
+        return get_object_or_404(model, pk=product_id)
+    
+    return None
+    
+    
+
 def cart(request):
     """
     View to display the shopping cart
     """
+    
     return render(request, 'cart.html')
 
 
-def add_item(request, product_id):
+
+def add_item(request, product_id, product_type):
     """
     Add a Product to Cart
     """
@@ -71,74 +100,101 @@ def add_item(request, product_id):
         quantity = 1
 
 
-    # Get the Product object corresponding to the provided product_id
-    product = Product.objects.get(pk=product_id)
-
+    # obtain the product
+    product = get_product_type(product_type, product_id)
+    
+    
     # Create an instance of the Cart class (from the cart.py file)
     cart_instance = Cart(request)
+
 
     # Add the product to the cart with the specified quantity
     cart_instance.add(product, quantity)
 
-    # Check if the HTTP request is of type GET.
+
     if request.method == 'GET':
-        # If it's a GET request, redirect the user to the homepage ('/').
+        
+        # redirect the user to the homepage ('/').
         return redirect('/')
 
-    # Render the 'cart.html' template (this is where the cart content is expected to be displayed)
-    return render(request, 'cart.html')
+    
+    # Redirect to the homepage after adding the product
+    return redirect('food:home')
 
 
-# Define the "delete_item" function that handles removing a product from the shopping cart.
-# It receives the "request" parameter, which represents the received HTTP request.
-# It also receives the "product_id" parameter, which is the ID of the product to be removed from the cart.
-def delete_item(request, product_id):
-    # Get the "Product" object corresponding to the ID received as a parameter.
-    product = Product.objects.get(pk=product_id)
+
+def delete_item(request, product_id, product_type):
+    """
+    # This function remove a product from the shopping cart.
+    """
+    
+    # obtain the product
+    product = get_product_type(product_type, product_id)
+
 
     # Create a "cart_instance" object from the "Cart" class and pass the "request" object as a parameter.
     cart_instance = Cart(request)
 
+
     # Call the "delete" method of the "cart_instance" object and pass the "Product" object as a parameter.
-    # This method will remove the product from the shopping cart.
     cart_instance.delete(product)
 
-    # Redirect the user to the cart page after removing the product.
-    return render(request, 'cart.html')
 
-    """except Product.DoesNotExist:
-        # If the product does not exist, handle the error appropriately here (e.g., showing a message to the user).
-        return render(request, 'error.html', {'message': 'The product does not exist'})"""
+    # Redirect to the home page after removing the product.
+    return redirect('food:home')
 
+    
 
 def clean_cart(request):
+    
     # Create an instance of the 'Cart' class, passing the 'request' object as a parameter.
     cart_instance = Cart(request)
 
+
     # Use the 'clear()' method from the 'Cart' class to remove all products from the cart.
     cart_instance.clear()
+
 
     # Redirect the user to the store page after clearing the cart.
     return render(request, 'cart.html')
 
 
 
+"""STEPS I DID TO CREATE THE PROYECT """
+
+
 #TODO:1. create the models where we will store the information about the products offered by the restaurant (main, drinks..etc)
 
+
 #TODO: 2. create the home page and render all the products in the page
+
 
 #TODO: 3. Create a view called details.html to see the details of the products, in my case the details of the products are seen
 # in the modal window
 
+
 #TODO: 4. Create the cart in the nav bar
+
 
 #TODO: when you press button ' the add to cart'  the products should be added to the cart
 
-#TODO: 5. Create the Cart class to control the shopping cart (add to cart, delete items etc..)
+
+#TODO: 5. Create the Cart class 'cart.py' to control the shopping cart (add to cart, delete items etc..)
+
 
 #TODO: 6. Create the Cart views (add to cart, delete items etc..)
 
 
+#TODO: 7. Since I have 4 models, I create a separate function to determine what type of model the product belongs to.
+
+
+#TODO: 8. Create the add_item url
+
+
+#TODO: 9. In the modal window 'index.html', i pass the url 'food:add_item' with the neccessary parameters for our 'add_item view'
+
+
+#TODO: 10. Create the url for the 'delete_item view'
 
 
 

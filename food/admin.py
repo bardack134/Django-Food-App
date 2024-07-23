@@ -5,7 +5,7 @@ from .models import DessertsItems, DrinksItems, Item, SidesItems
 class ItemAdmin(admin.ModelAdmin):  
     
     # Display fields in the admin view
-    list_display = ("item_name", "item_description", "item_price")  
+    list_display = ("item_name", "item_description", "item_price", "product_type")  
     
     # Makes created_at and updated_at read-only
     readonly_fields = ('created_at', 'updated_at')  
@@ -15,7 +15,7 @@ class ItemAdmin(admin.ModelAdmin):
 class DrinksItemsAdmin(admin.ModelAdmin):  
     
     # Display fields in the admin view
-    list_display = ("item_name", "item_description", "item_price")  
+    list_display = ("item_name", "item_description", "item_price", "product_type")  
     
     # Makes created_at and updated_at read-only
     readonly_fields = ('created_at', 'updated_at')  
@@ -25,7 +25,7 @@ class DrinksItemsAdmin(admin.ModelAdmin):
 class DessertsItemsAdmin(admin.ModelAdmin):  
     
     # Display fields in the admin view
-    list_display = ("item_name", "item_description", "item_price")  
+    list_display = ("item_name", "item_description", "item_price", "product_type")  
     
     # Makes created_at and updated_at read-only
     readonly_fields = ('created_at', 'updated_at')  
@@ -35,7 +35,7 @@ class DessertsItemsAdmin(admin.ModelAdmin):
 class SidesItemsAdmin(admin.ModelAdmin):  
     
     # Display fields in the admin view
-    list_display = ("item_name", "item_description", "item_price")  
+    list_display = ("item_name", "item_description", "item_price", "product_type")  
     
     # Makes created_at and updated_at read-only
     readonly_fields = ('created_at', 'updated_at')  

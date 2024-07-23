@@ -24,7 +24,7 @@
         rel="stylesheet">
 
     <!--Font awesome  -->
-    
+
 </head>
 
 <body>
@@ -44,8 +44,8 @@
                     <li><a href="#" class="nav-link px-2" style="color: #D04848;">Menu</a></li>
                     <li><a href="#" class="nav-link px-2" style="color: #D04848;">Details</a></li>
                 </ul>
-                
-                   <!-- Start Cart -->
+
+                <!-- Start Cart -->
                 <!-- ms-auto is used to apply an automatic left margin -->
                 <ul class="navbar-nav ms-auto">
 
@@ -56,17 +56,24 @@
                         <!-- dropdown-toggle indicates that it is a  pull down menu item. This is the link that opens the  pull down menu. -->
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                           <!-- font awesome -->
-                          
-                           <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#d04848" d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                            <!-- font awesome -->
 
-                           <!-- end font awesome -->
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27"
+                                viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path fill="#d04848"
+                                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                            </svg>
+
+                            <!-- end font awesome -->
                         </a>
 
                         <!-- "dropdown-menu-end": Align the menu to the right.  -->
                         <!-- "dropdown-menu": Container for the dropdown menu. The items within this list (<li>) represent the menu options. -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdow">
                             <!-- aria-labelledby: This attribute indicates that the dropdown menu is associated with the element with the id navbarDropdown, for accessibility.     -->
+
+                            {% for key, value in request.session.cart.items %}
+                            <!-- Cart products are saved in the 'request.session' so we can easily access them -->
 
                             <!-- cart elements -->
                             <li>
@@ -75,30 +82,23 @@
 
                                     <div class="container d-flex align-items-center">
                                         <!-- center and align the content of cart items with container -->
-                                        <img src="http://lorempixel.com/50/50/" alt="" class="img-thumbnail me-2 " />
+                                        <img src="{{value.image}}" alt="" class="img-thumbnail me-2 " />
                                         <div>
-                                            <span>Item name</span><br>
-                                            <span>$23</span>
+                                            <span>{{value.name}}</span><br>
+                                            <span>${{value.price}}</span>
                                         </div>
-                                        <button class="btn btn-sm btn-danger ms-auto">x</button>
+
+                                        <a class="btn btn-sm btn-danger ms-auto"
+                                            href="{% url 'food:delete_item' product_id=value.product_id product_type=value.type %}">x</a>
+
                                     </div>
                                 </a>
                             </li>
 
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <div class="container d-flex align-items-center">
-                                        <!-- we use a d-flex structure to horizontally align the image, text, and delete button. -->
+                            <!-- bugging proccess, checking if value.type has a value -->
+                            <!-- <p>product_id: {{ value.product_id }}, product_type: {{ value.type }}</p> -->
+                            {% endfor %}
 
-                                        <img src="http://lorempixel.com/50/50/" alt="" class="img-thumbnail me-2" />
-                                        <div>
-                                            <span>Item name</span><br>
-                                            <span>$23</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-danger ms-auto">x</button>
-                                    </div>
-                                </a>
-                            </li>
                             <!-- end cart elements -->
 
                         </ul>
@@ -108,8 +108,8 @@
                 <!-- Finish Cart -->
 
 
-             
-                
+
+
             </div>
         </div>
     </header>

@@ -24,11 +24,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("home/", include("food.urls")),
+    
+    path("home/", include("food.urls")),# see food app url.py
 ]
 
 # Configuration for serving static and media files during development
 
 if settings.DEBUG:
+    
     # Add URLs to serve media files (MEDIA_URL) using the file system path specified in MEDIA_ROOT
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

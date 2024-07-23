@@ -44,6 +44,7 @@
     <!-- Container to center align content and provide padding and center the text -->
     <div class="container text-center">
         <div class="tab-content">
+
             <!-- START MAIN MENU -->
             <div class="tab-pane fade active show" id="Main">
                 <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
@@ -117,8 +118,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form class="clearfix product-show-form" action="/es/line_items"
+
+                                            
+                                             <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
+                                            <form class="clearfix product-show-form" action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
                                                 accept-charset="UTF-8" data-remote="true" method="post">
+                                                {% csrf_token %}
+
+                                                
                                                 <input type="hidden" name="authenticity_token"
                                                     value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
                                                     autocomplete="off">
@@ -152,12 +159,13 @@
                                                     </div>
                                                     <div class="product-row clearfix">
 
-                                                        <button type="button" class=" btn btn-success"
+                                                        <button type="submit" class=" btn btn-success"
                                                             style="width: 100%;">
                                                             Add to Car
                                                         </button>
                                                     </div>
                                                 </div>
+
                                             </form>
 
                                         </div>

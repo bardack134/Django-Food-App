@@ -9,6 +9,8 @@ class Item(models.Model):
     item_description = models.CharField(max_length=200)
     item_price = models.DecimalField( max_digits = 5, decimal_places=2)
     imagen = models.ImageField(upload_to='food', null=True, blank=True)
+    
+    product_type=models.CharField(max_length=200, default='itemx', editable=False)
        
     # Date and time when item was created 
     created_at = models.DateTimeField(auto_now_add=True)  
@@ -30,6 +32,8 @@ class DrinksItems(models.Model):
     item_price = models.DecimalField( max_digits = 5, decimal_places=2)
     imagen = models.ImageField(upload_to='food', null=True, blank=True)
     
+    product_type=models.CharField(max_length=200, default='drinks', editable=False)
+    
     # Date and time when item was created 
     created_at = models.DateTimeField(auto_now_add=True)  
     
@@ -50,6 +54,8 @@ class DessertsItems(models.Model):
     item_price = models.DecimalField( max_digits = 5, decimal_places=2)
     imagen = models.ImageField(upload_to='food', null=True, blank=True)
     
+    product_type=models.CharField(max_length=200, default='desserts', editable=False)
+    
     # Date and time when item was created 
     created_at = models.DateTimeField(auto_now_add=True)  
     
@@ -69,6 +75,8 @@ class SidesItems(models.Model):
     item_description = models.CharField(max_length=200)
     item_price = models.DecimalField( max_digits = 5, decimal_places=2)
     imagen = models.ImageField(upload_to='food', null=True, blank=True)
+    
+    product_type=models.CharField(max_length=200, default='sides', editable=False)
     
     # Date and time when item was created 
     created_at = models.DateTimeField(auto_now_add=True)  
