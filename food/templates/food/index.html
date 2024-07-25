@@ -34,9 +34,9 @@
     </ul>
     <!-- END MENU NAV BAR -->
 
-    
 
-    
+
+
     <!-- center the text -->
     <div class="text-center">
         <!-- google font -->
@@ -51,7 +51,7 @@
             <!-- START MAIN MENU -->
             <div class="tab-pane fade active show" id="Main">
                 <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
-                <div class="row gy-5">
+                <div class="row gy-5 py-5 ">
 
                     {% for item in item_list %}
                     <div class="col-lg-3 d-flex">
@@ -68,7 +68,8 @@
                                     ${{ item.item_price }}
                                 </p>
                                 <div class="mt-auto">
-                                    <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                    <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}"
+                                        class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
                                         View details
                                     </a>
                                 </div>
@@ -89,7 +90,7 @@
                                 <div class="ld-over p-2">
                                     <div class="row variant-fancy-box">
                                         <div class="col-12 col-md-2 p-0">
-                                            <div class="text-center one-photo-quick">
+                                            <div class="text-center ">
                                                 <div class="image">
                                                     <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
                                                         class="lazy" src="{{ item.imagen.url }}" width="320"
@@ -102,73 +103,61 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="product-head mb-3">
                                                 <div class="product-title ">
                                                     {{ item.item_description }}
                                                 </div>
-                                                
-                                            </div>    
-                                            <div class="grey-action hero">
+
+                                            </div>
+                                            <div class=" hero">
                                                 <div class="price-from">Precio</div>
-                                                <div class="product-detail-price clearfix">
+                                                <div class=" clearfix">
                                                     <div class="product-prices">
-                                                        <span class="number-price">
-                                                            <span class="total-options red_color" data-price="17528.0">
+                                                        <span class="">
+                                                            <span class=" red_color" data-price="17528.0">
                                                                 ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            
-                                             <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
-                                            <form class="clearfix product-show-form" action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
-                                                accept-charset="UTF-8" data-remote="true" method="post">
+
+                                            <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
+                                            <!-- clearfix ensures that the internal elements of the form do not overflow. -->
+                                            <form class="clearfix"
+                                                action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
+                                                method="post">
                                                 {% csrf_token %}
 
                                                 
-                                                <input type="hidden" name="authenticity_token"
-                                                    value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
-                                                    autocomplete="off">
-                                                <input type="hidden" name="product_hash"
-                                                    value="8285132b-5a28-4542-98e3-11027c3ef866" autocomplete="off">
-                                                <input type="hidden" name="variant_hash"
-                                                    value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
-                                                <div class="white-action">
                                                     <div class="clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option"
-                                                            for="quantity-{{ item.id }}">Cantidad</label>
-                                                        <div class="qty-block">
-                                                            <div class="qty-square-buttons">
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square minus-square"
-                                                                    data-type="minus" disabled="disabled"><i
+                                                        <!-- The for attribute in the <label> tag must contain the id of the input field to which it is associated -->
+                                                        <label for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <!-- The for attribute on a <label> tag is used to associate the label with a specific input field. When you click the label, the associated input field automatically receives focus. -->
+                                                        <div>
+                                                            <div>
+                                                                <button type="button" disabled="disabled"><i
                                                                         class="far fa-minus"></i></button>
-                                                                <div class="qty-input">
+                                                                <div>
                                                                     <input type="number" name="quantity"
                                                                         id="quantity-{{ item.id }}" value="1"
-                                                                        class="qty-field focused" autocomplete="off"
-                                                                        min="1" max="999" data-min="1" data-max="2"
-                                                                        data-default="1" data-factor="1">
+                                                                        class="form-control" autocomplete="off" min="1"
+                                                                        max="999">
                                                                 </div>
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square plus-square"
-                                                                    data-type="plus"><i
+                                                                <button type="button"><i
                                                                         class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class=" container">
-
-                                                        <button type="submit" class=" btn btn-success"
+                                                    <div class="container">
+                                                        <button type="submit" class="btn btn-success"
                                                             style="width: 100%;">
-                                                            Add to Car
+                                                            Add to Cart
                                                         </button>
                                                     </div>
-                                                </div>
-
+                                               
                                             </form>
 
                                         </div>
@@ -187,7 +176,7 @@
 
             <!-- DRINKS   MENU -->
             <div class="tab-pane fade" id="drinks">
-                <div class="row gy-5">
+                <div class="row gy-5 py-5">
                     {% for item in drinksItems_list %}
                     <div class="col-lg-3 d-flex">
                         <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
@@ -203,7 +192,8 @@
                                     ${{ item.item_price }}
                                 </p>
                                 <div class="mt-auto">
-                                    <a data-bs-toggle="modal" data-bs-target="#drinksModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                    <a data-bs-toggle="modal" data-bs-target="#drinksModal{{ item.id }}"
+                                        class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
                                         View details
                                     </a>
                                 </div>
@@ -222,13 +212,12 @@
                             <!-- START MODAL CONTENT -->
                             <div class="modal-content">
                                 <div class="ld-over p-2">
-                                    <div class="row variant-fancy-box">
+                                    <div class="row ">
                                         <div class="col-12 col-md-2 p-0">
-                                            <div class="text-center one-photo-quick">
+                                            <div class="text-center ">
                                                 <div class="image">
                                                     <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                        class="lazy" src="{{ item.imagen.url }}" width="320"
-                                                        height="320">
+                                                        class="" src="{{ item.imagen.url }}" width="320" height="320">
                                                 </div>
                                             </div>
                                         </div>
@@ -237,63 +226,50 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="product-head mb-3">
                                                 <div class="product-title ">
                                                     {{ item.item_description }}
                                                 </div>
-                                                
-                                            </div>  
-                                            <div class="grey-action hero">
-                                                <div class="price-from">Precio</div>
-                                                <div class="product-detail-price clearfix">
+
+                                            </div>
+                                            <div class="hero">
+                                                <div class="">Precio</div>
+                                                <div class=" clearfix">
                                                     <div class="product-prices">
-                                                        <span class="number-price">
-                                                            <span class="total-options red_color" data-price="17528.0">
+                                                        <span class="">
+                                                            <span class=" red_color" data-price="17528.0">
                                                                 ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form class="clearfix product-show-form" action="/es/line_items"
-                                                accept-charset="UTF-8" data-remote="true" method="post">
-                                                <input type="hidden" name="authenticity_token"
-                                                    value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
-                                                    autocomplete="off">
-                                                <input type="hidden" name="product_hash"
-                                                    value="8285132b-5a28-4542-98e3-11027c3ef866" autocomplete="off">
-                                                <input type="hidden" name="variant_hash"
-                                                    value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
-                                                <div class="white-action">
-                                                    <div class=" clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option"
-                                                            for="quantity-{{ item.id }}">Cantidad</label>
-                                                        <div class="qty-block">
-                                                            <div class="qty-square-buttons">
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square minus-square"
-                                                                    data-type="minus" disabled="disabled"><i
-                                                                        class="far fa-minus"></i></button>
-                                                                <div class="qty-input">
+
+
+                                            <form class="clearfix" action="{% url 'food:add_item' product_id=item.id product_type=item.product_type %}" method="post">
+                                                {% csrf_token %}
+                                                <div class="">
+                                                    <div class="clearfix text-center pt-2 pb-3">
+                                                        <label for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <div>
+                                                            <div>
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                    disabled><i class="far fa-minus"></i></button>
+                                                                <div>
                                                                     <input type="number" name="quantity"
-                                                                       
-                                                                        class="qty-field focused" autocomplete="off"
-                                                                        min="1" max="999" data-min="1" data-max="2"
-                                                                        data-default="1" data-factor="1">
+                                                                        class="form-control" autocomplete="off" min="1"
+                                                                        max="999" value="1">
                                                                 </div>
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square plus-square"
-                                                                    data-type="plus"><i
+                                                                <button type="button" 
+                                                                    class="btn btn-outline-secondary"><i
                                                                         class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="container">
-
-                                                        <button type="button" class=" btn btn-success"
-                                                            style="width: 100%;">
-                                                            Add to Car
+                                                        <button type="submit" class="btn btn-success w-100">
+                                                            Add to Cart
                                                         </button>
                                                     </div>
                                                 </div>
@@ -316,7 +292,7 @@
 
             <!-- START DESSERTS MENU -->
             <div class="tab-pane fade" id="desserts">
-                <div class="row gy-5">
+                <div class="row gy-5 py-5">
                     {% for item in dessertsItems_list %}
                     <div class="col-lg-3 d-flex">
                         <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
@@ -332,7 +308,8 @@
                                     ${{ item.item_price }}
                                 </p>
                                 <div class="mt-auto">
-                                    <a data-bs-toggle="modal" data-bs-target="#dessertsModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                    <a data-bs-toggle="modal" data-bs-target="#dessertsModal{{ item.id }}"
+                                        class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
                                         View details
                                     </a>
                                 </div>
@@ -351,13 +328,12 @@
                             <!-- START MODAL CONTENT -->
                             <div class="modal-content">
                                 <div class="ld-over p-2">
-                                    <div class="row variant-fancy-box">
+                                    <div class="row ">
                                         <div class="col-12 col-md-2 p-0">
-                                            <div class="text-center one-photo-quick">
+                                            <div class="text-center ">
                                                 <div class="image">
                                                     <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                        class="lazy" src="{{ item.imagen.url }}" width="320"
-                                                        height="320">
+                                                        class="" src="{{ item.imagen.url }}" width="320" height="320">
                                                 </div>
                                             </div>
                                         </div>
@@ -366,67 +342,52 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                               
+
                                             </div>
                                             <div class="product-head mb-3">
                                                 <div class="product-title ">
                                                     {{ item.item_description }}
                                                 </div>
-                                                
-                                            </div>  
-                                            <div class="grey-action hero">
-                                                <div class="price-from">Precio</div>
-                                                <div class="product-detail-price clearfix">
+
+                                            </div>
+                                            <div class=" hero">
+                                                <div class="">Precio</div>
+                                                <div class="clearfix">
                                                     <div class="product-prices">
-                                                        <span class="number-price">
-                                                            <span class="total-options red_color" data-price="17528.0">
+                                                        <span class="">
+                                                            <span class=" red_color" data-price="17528.0">
                                                                 ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form class="clearfix product-show-form" action="/es/line_items"
-                                                accept-charset="UTF-8" data-remote="true" method="post">
-                                                <input type="hidden" name="authenticity_token"
-                                                    value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
-                                                    autocomplete="off">
-                                                <input type="hidden" name="product_hash"
-                                                    value="8285132b-5a28-4542-98e3-11027c3ef866" autocomplete="off">
-                                                <input type="hidden" name="variant_hash"
-                                                    value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
-                                                <div class="white-action">
-                                                    <div class=" clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option"
-                                                            for="quantity-{{ item.id }}">Cantidad</label>
-                                                        <div class="qty-block">
-                                                            <div class="qty-square-buttons">
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square minus-square"
-                                                                    data-type="minus" disabled="disabled"><i
-                                                                        class="far fa-minus"></i></button>
-                                                                <div class="qty-input">
+                                            <form class="clearfix" action="/es/line_items" method="post">
+                                                <div class="">
+                                                    <div class="clearfix text-center pt-2 pb-3">
+                                                        <label for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <div>
+                                                            <div>
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                    disabled><i class="far fa-minus"></i></button>
+                                                                <div>
                                                                     <input type="number" name="quantity"
-                                                                        
-                                                                        class="qty-field focused" autocomplete="off"
-                                                                        min="1" max="999" data-min="1" data-max="2"
-                                                                        data-default="1" data-factor="1">
+                                                                        class="form-control" autocomplete="off" min="1"
+                                                                        max="999" value="1">
                                                                 </div>
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square plus-square"
-                                                                    data-type="plus"><i
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary"><i
                                                                         class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class=" container ">
-
-                                                        <button type="button" class=" btn btn-success"
-                                                            style="width: 100%;">
-                                                            Add to Car
+                                                    <div class="container">
+                                                        <button type="button" class="btn btn-success w-100">
+                                                            Add to Cart
                                                         </button>
                                                     </div>
                                                 </div>
                                             </form>
+
 
                                         </div>
                                     </div>
@@ -443,7 +404,7 @@
 
             <!-- START SIDES MENU -->
             <div class="tab-pane fade" id="menu-dinner">
-                <div class="row g-4">
+                <div class="row g-4 py-5">
                     {% for item in sidesItems_list %}
                     <div class="col-lg-3 d-flex">
                         <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
@@ -459,7 +420,8 @@
                                     ${{ item.item_price }}
                                 </p>
                                 <div class="mt-auto">
-                                    <a data-bs-toggle="modal" data-bs-target="#menu-dinnerModal{{ item.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                    <a data-bs-toggle="modal" data-bs-target="#menu-dinnerModal{{ item.id }}"
+                                        class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
                                         View details
                                     </a>
                                 </div>
@@ -477,13 +439,12 @@
                             <!-- START MODAL CONTENT -->
                             <div class="modal-content">
                                 <div class="ld-over p-2">
-                                    <div class="row variant-fancy-box">
+                                    <div class="row ">
                                         <div class="col-12 col-md-2 p-0">
-                                            <div class="text-center one-photo-quick">
+                                            <div class="text-center ">
                                                 <div class="image">
                                                     <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                        class="lazy" src="{{ item.imagen.url }}" width="320"
-                                                        height="320">
+                                                        class="" src="{{ item.imagen.url }}" width="320" height="320">
                                                 </div>
                                             </div>
                                         </div>
@@ -492,67 +453,54 @@
                                                 <div class="product-title nunito-sans">
                                                     {{ item.item_name }}
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="product-head mb-3">
                                                 <div class="product-title ">
                                                     {{ item.item_description }}
                                                 </div>
-                                                
-                                            </div>  
-                                            <div class="grey-action hero">
-                                                <div class="price-from">Precio</div>
-                                                <div class="product-detail-price clearfix">
+
+                                            </div>
+                                            <div class="hero">
+                                                <div class="">Precio</div>
+                                                <div class=" clearfix">
                                                     <div class="product-prices">
-                                                        <span class="number-price">
-                                                            <span class="total-options red_color" data-price="17528.0">
+                                                        <span class="">
+                                                            <span class=" red_color" data-price="17528.0">
                                                                 ${{item.item_price }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form class="clearfix product-show-form" action="/es/line_items"
-                                                accept-charset="UTF-8" data-remote="true" method="post">
-                                                <input type="hidden" name="authenticity_token"
-                                                    value="drP6S-Vi49Y9EJfMT4R5kOdRV6UVubQx1Duuk8dbmpsxs4pYUEBEoWgmHIrkvncQT4vT7W9Vuq1UnfVwjPYZrw"
-                                                    autocomplete="off">
-                                                <input type="hidden" name="product_hash"
-                                                    value="8285132b-5a28-4542-98e3-11027c3ef866" autocomplete="off">
-                                                <input type="hidden" name="variant_hash"
-                                                    value="12e81e44-e586-446e-a597-121def8d86b4" autocomplete="off">
-                                                <div class="white-action">
+
+
+                                            <form class="clearfix" action="/es/line_items" method="post">
+                                                <div class="">
                                                     <div class="clearfix text-center pt-2 pb-3">
-                                                        <label class="title-option"
-                                                            for="quantity-{{ item.id }}">Cantidad</label>
-                                                        <div class="qty-block">
-                                                            <div class="qty-square-buttons">
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square minus-square"
-                                                                    data-type="minus" disabled="disabled"><i
-                                                                        class="far fa-minus"></i></button>
-                                                                <div class="qty-input">
+                                                        <label for="quantity-{{ item.id }}">Cantidad</label>
+                                                        <div>
+                                                            <div>
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                    disabled><i class="far fa-minus"></i></button>
+                                                                <div>
                                                                     <input type="number" name="quantity"
-                                                                       
-                                                                        class="qty-field focused" autocomplete="off"
-                                                                        min="1" max="999" data-min="1" data-max="2"
-                                                                        data-default="1" data-factor="1">
+                                                                        class="form-control" autocomplete="off" min="1"
+                                                                        max="999" value="1">
                                                                 </div>
-                                                                <button name="button" type="button"
-                                                                    class="quantity-square plus-square"
-                                                                    data-type="plus"><i
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary"><i
                                                                         class="far fa-plus"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="container">
-
-                                                        <button type="button" class=" btn btn-success"
-                                                            style="width: 100%;">
-                                                            Add to Car
+                                                        <button type="button" class="btn btn-success w-100">
+                                                            Add to Cart
                                                         </button>
                                                     </div>
                                                 </div>
                                             </form>
+
 
                                         </div>
                                     </div>

@@ -192,10 +192,13 @@ def clean_cart(request):
 #TODO: 8. Create the add_item url
 
 
-#TODO: 9. In the modal window 'index.html', i pass the url 'food:add_item' with the neccessary parameters for our 'add_item view'
+#TODO: 9. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
 
 
-#TODO: 10. Create the url for the 'delete_item view'
+#TODO: 10. Create the url for the 'delete_item view' and put it to work in the navbar cart
+
+
+#TODO: 11.  until now, I have only used the add_view url with the main menu. I will now add it for drinks, desserts, and sides.
 
 
 
