@@ -98,29 +98,18 @@
 
                                 <!--the following class Line up the titles and products equally in a row. -->
                                 <!-- https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content -->
-                                <div class="container d-flex justify-content-center">
-                                    <div><strong>Product</strong></div>
+                                <div class="container d-flex justify-content-between">
+                                    <div class="container px-5"><strong>Product</strong></div>
 
+                                    <div class="container px-5"><strong>Price</strong></div>
+                                    <div class="container px-4"><strong>Quantity</strong></div>
+                                    <div class="container px-4"><strong>Total</strong></div>
+                                    <div class="container px-4"><strong></strong></div>
+                                
                                 </div>
 
-
-                                <div class="container d-flex justify-content-center">
-                                    <div><strong>Price</strong></div>
-
-                                </div>
-
-
-                                <div class="container d-flex justify-content-center">
-
-                                    <div><strong>Quantity</strong></div>
-
-                                </div>
-
-
-                                <div class="container d-flex justify-content-center">
-
-                                    <div><strong>Total</strong></div>
-                                </div>
+                               
+                               
 
                             </li>
 
@@ -132,6 +121,7 @@
 
 
                             {% for key, value in request.session.cart.items %}
+                            
                             <!-- Cart products are saved in the 'request.session' so we can easily access them -->
 
                             <!-- cart elements or cart products with his information -->
@@ -143,41 +133,15 @@
                                     <!--the following class Line up the titles and products equally in a row. -->
                                     <!-- https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content -->
                                     <div class="container d-flex justify-content-center align-items-center">
+                                        
+                                        <div class="container px-5">
+                                            
+                                            <img src="{{value.image}}" alt="" class="img-thumbnail me-2 " />
+                                        </div>
 
-                                        <img src="{{value.image}}" alt="" class="img-thumbnail me-2 " />
-
-                                    </div>
-
-
-                                    <div class="container d-flex justify-content-center align-items-center">
-
-
-                                        <span>{{value.price}}</span><br>
-
-
-
-                                    </div>
-
-
-                                    <div class="container d-flex justify-content-center align-items-center">
-
-
-                                        <span>{{value.quantity}}</span><br>
-
-
-
-                                    </div>
-
-
-                                    <div class="container d-flex justify-content-center align-items-center">
-
-
-                                        <span>{{value.subtotal}}</span><br>
-
-
-
-                                    </div>
-                                    <div class="container d-flex justify-content-center align-items-center">
+                                        <div class="container px-5">{{value.price}}</div>
+                                        <div class="container px-1">{{value.quantity}}</div>
+                                        <div class="container px-1 ">{{value.subtotal}}</div>
 
                                         <!-- delete font awesome -->
                                         <a
@@ -187,8 +151,10 @@
                                               </svg>
 
                                         </a>
-
                                     </div>
+
+
+                                    
                                 </a>
                             </li>
 
