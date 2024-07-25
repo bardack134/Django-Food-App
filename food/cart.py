@@ -140,6 +140,8 @@ class Cart:
 
             # Save changes to the session after removing the product.
             self.save()
+            
+            print("Product deleted")
 
 
 

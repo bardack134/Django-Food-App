@@ -69,6 +69,7 @@ def get_product_type(product_type, product_id):
     
     if model is not None:
         
+        #finally get the product information
         return get_object_or_404(model, pk=product_id)
     
     return None
