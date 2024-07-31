@@ -4,47 +4,51 @@ from .models import  Category, Items
 from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
-def home(request):
     
-    category_list = Category.objects.all()
+def home(request, category_id=None):
+    """
+    This view provides all products or products according to their category
+    """
     
-    item_list = Items.objects.all()
-    
-    context = {
+    # products according to their category if the category_id is provided
+    if category_id:
         
-        "item_list": item_list,
+        # Get the Category object that matches the provided category_id
+        objCategory = Category.objects.get(id=category_id)
+
+
+        # get all products associated with the category gotten before
+        product_list = objCategory.products.all()
+
+
+        # Get all categories to display in the sidebar or menu
+        category_list = Category.objects.all()
+
+
+        # Prepare the context dictionary with category_list and product_list
+        context = {
+            'category_list': category_list,  
+            'product_list': product_list,   
+        }
+
+
+    # category_id is optional so if it is not provided we render all the existing products in the database
+    else:
         
-        "category_list": category_list,
-       
-    }
-    
+        # Get all categories
+        category_list = Category.objects.all()
 
-    return render(request, "food/example.html", context)
-    # return render(request, "food/index.html", context)
-    
+        # Get all products in the database
+        item_list = Items.objects.all()
 
+        # Prepare the context dictionary with category_list and item_list
+        context = {
+            "product_list": item_list,     
+            "category_list": category_list, 
+        }
 
-def ProductsByCategory(request, category_id):
-   
-    objCategory = Category.objects.get(id=category_id)
-
-    
-    product_list = objCategory.products.all()
-
-    
-    category_list = Category.objects.all()
-
-   
-    context = {
-        'category_list': category_list, 
-        'product_list': product_list,  
-    }
-
-    
-    return render(request, 'food/example.html', context)
-
-
-
+    # Render the 'food/example.html' template with the prepared context
+    return render(request, 'food/index.html', context)
 
 
 

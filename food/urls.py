@@ -5,7 +5,7 @@ from . import views
 app_name='food'
 urlpatterns = [
     
-    #home　page url
+    #home　page url. show all products
     path("", views.home, name="home"),
         
     # url to add a new item to the cart
@@ -15,6 +15,6 @@ urlpatterns = [
     path("delete_item/<int:product_id>/<str:product_type>", views.delete_item, name="delete_item"),
     
     #search a product acording to its category
-    path('ProductsByCategory/<int:category_id>', views.ProductsByCategory, name='ProductsByCategory'),
+    path('ProductsByCategory/<int:category_id>', views.home, name='ProductsByCategory'),
     
 ]

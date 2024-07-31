@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path("home/", include("food.urls")),# see food app url.py
+    path("", include("food.urls")),# see food app url.py
 ]
 
 # Configuration for serving static and media files during development
