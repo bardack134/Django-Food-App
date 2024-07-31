@@ -1,0 +1,359 @@
+{% extends "food/base.html" %}
+
+<body>
+    {% block content %}
+    <div class="container-fluuid ">
+        <div class=" d-flex  justify-content-center" style="width: 100%;">
+
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid d-flex  justify-content-center" style="width: 100%;">
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item  ">
+                                <a class="nav-link active red_color" aria-current="page"
+                                    href="{% url 'food:home' %}">
+                                    <h4>All Categories</h4>
+                                </a>
+                            </li>
+                            {% for category in category_list %}
+                            <li class="nav-item">
+                                <a class="nav-link active red_color" aria-current="page"
+                                    href="{% url 'food:ProductsByCategory' category.id %}">
+                                    <h4>{{ category.name }}</h4>
+                                </a>
+                            </li>
+                            {% endfor %}
+                            
+                            
+                        </ul>
+                        
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+    
+        
+    </div>
+
+    <!--Start All products -->
+     
+        <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
+        <!-- <div class="bg-warning-subtle "> -->
+            <div class=" bg-body-light ">
+                <div class="container ">
+        
+        
+                    <div class="row py-5  justify-content-start ">
+        
+        
+                        {% for item in item_list %}
+                        <div class="col-12 col-lg-3 d-flex text-center justify-content-start py-3">
+                            <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                            <div class="card h-100 d-flex flex-column " style="width: 18rem;">
+        
+                                <div class="card-body d-flex flex-column">
+                                    <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}" class="img-fluid"
+                                            style="height: 210px;" alt=""></a>
+                                    <h4>{{ item.item_name }}</h4>
+                                    <p class="mt-auto">
+                                        {{ item.item_description }}
+                                    </p>
+                                    <p class="mt-auto">
+                                        ${{ item.item_price }}
+                                    </p>
+                                    <div class="mt-auto">
+                                        <a data-bs-toggle="modal" data-bs-target="#detallesModalAllProducts{{ item.id }}"
+                                            class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                            View details
+                                        </a>
+                                    </div>
+        
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <!-- Vertically centered modal -->
+                        <!-- modal fade: Creates a modal dialog that fades in and out. -->
+                        <div class="modal fade" id="detallesModalAllProducts{{ item.id }}" tabindex="-1"
+                            aria-labelledby="detallesModalLabel{{ item.id }}" aria-hidden="true" s>
+                            <!-- modal-dialog modal-dialog-centered: Centers the modal vertically and horizontally. -->
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <!-- modal-content: Creates the content area of the modal. -->
+                                <!-- START MODAL CONTENT -->
+                                <div class="modal-content">
+                                    <div class="ld-over p-2">
+                                        <div class="row variant-fancy-box">
+                                            <div class="col-12 col-md-2 p-0">
+                                                <div class="text-center ">
+                                                    <div class="image">
+                                                        <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
+                                                            class="lazy" src="{{ item.imagen.url }}" width="320" height="320">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 offset-md-4 text-center">
+                                                <div class="product-head mb-3">
+                                                    <div class="product-title nunito-sans">
+                                                        {{ item.item_name }}
+                                                    </div>
+        
+                                                </div>
+                                                <div class="product-head mb-3">
+                                                    <div class="product-title ">
+                                                        {{ item.item_description }}
+                                                    </div>
+        
+                                                </div>
+                                                <div class=" hero">
+                                                    <div class="price-from">Precio</div>
+                                                    <div class=" clearfix">
+                                                        <div class="product-prices">
+                                                            <span class="">
+                                                                <span class=" red_color" data-price="17528.0">
+                                                                    ${{item.item_price }}</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+        
+                                                <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
+                                                <!-- clearfix ensures that the internal elements of the form do not overflow. -->
+                                                <form class="clearfix"
+                                                    action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
+                                                    method="post">
+                                                    {% csrf_token %}
+        
+        
+                                                    <div class="clearfix text-center pt-2 pb-3 ">
+        
+                                                        <!-- The for attribute in the <label> tag must contain the id of the input field to which it is associated -->
+                                                        <label class="pt-4 fw-bold"
+                                                            for="quantity-{{ item.id }}">Cantidad</label>
+        
+                                                        <!-- The for attribute on a <label> tag is used to associate the label with a specific input field. When you click the label, the associated input field automatically receives focus. -->
+                                                        <div>
+                                                            <div class="container d-flex align-items-center align-items-center py-3 ms-auto"
+                                                                style="max-width: 200px;">
+        
+        
+                                                                <!-- Increase button -->
+                                                                <button onclick="incrementQuantity('{{ item.id }}', 'quantity')"
+                                                                    type="button" class="btn btn-light minus"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" fill="currentColor" class="bi bi-plus"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                                                    </svg>
+                                                                </button>
+        
+                                                                <!-- quantity input -->
+                                                                <div class="mx-2 ">
+                                                                    <input style="width: 50px;" type="number" name="quantity"
+                                                                        id="quantity-{{ item.id }}" value="1"
+                                                                        class="form-control " autocomplete="off">
+                                                                </div>
+        
+                                                                <!-- Decrease button -->
+                                                                <button onclick="decrementQuantity('{{ item.id }}', 'quantity')"
+                                                                    type="button" class="btn btn-light plus">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" fill="currentColor" class="bi bi-dash-lg"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8" />
+                                                                    </svg>
+                                                                </button>
+        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="container">
+                                                        <button type="submit" class="btn btn-success" style="width: 100%;">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+        
+                                                </form>
+        
+                                            </div>
+                                        </div>
+                                        <div class="ld ld-ring ld-spin"></div>
+                                    </div>
+                                </div>
+                                <!-- FINISH MODAL CONTENT -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+    <!-- End All products -->
+
+
+
+
+
+
+    <!--  MENUS CATEGORIES -->
+
+        <!-- Creates a row of columns with a gutter (spacing) of 5 units between them. -->
+        <!-- <div class="bg-warning-subtle "> -->
+        <div class=" bg-body-light ">
+        <div class="container ">
+
+
+            <div class="row py-5  justify-content-start ">
+
+
+                {% for item in product_list %}
+                <div class="col-12 col-lg-3 d-flex text-center justify-content-start py-3">
+                    <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
+                    <div class="card h-100 d-flex flex-column " style="width: 18rem;">
+
+                        <div class="card-body d-flex flex-column">
+                            <a href="{{ item.imagen.url }}" class=""><img src="{{ item.imagen.url }}" class="img-fluid"
+                                    style="height: 210px;" alt=""></a>
+                            <h4>{{ item.item_name }}</h4>
+                            <p class="mt-auto">
+                                {{ item.item_description }}
+                            </p>
+                            <p class="mt-auto">
+                                ${{ item.item_price }}
+                            </p>
+                            <div class="mt-auto">
+                                <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ item.id }}"
+                                    class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                                    View details
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Vertically centered modal -->
+                <!-- modal fade: Creates a modal dialog that fades in and out. -->
+                <div class="modal fade" id="detallesModal{{ item.id }}" tabindex="-1"
+                    aria-labelledby="detallesModalLabel{{ item.id }}" aria-hidden="true" s>
+                    <!-- modal-dialog modal-dialog-centered: Centers the modal vertically and horizontally. -->
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <!-- modal-content: Creates the content area of the modal. -->
+                        <!-- START MODAL CONTENT -->
+                        <div class="modal-content">
+                            <div class="ld-over p-2">
+                                <div class="row variant-fancy-box">
+                                    <div class="col-12 col-md-2 p-0">
+                                        <div class="text-center ">
+                                            <div class="image">
+                                                <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
+                                                    class="lazy" src="{{ item.imagen.url }}" width="320" height="320">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 offset-md-4 text-center">
+                                        <div class="product-head mb-3">
+                                            <div class="product-title nunito-sans">
+                                                {{ item.item_name }}
+                                            </div>
+
+                                        </div>
+                                        <div class="product-head mb-3">
+                                            <div class="product-title ">
+                                                {{ item.item_description }}
+                                            </div>
+
+                                        </div>
+                                        <div class=" hero">
+                                            <div class="price-from">Precio</div>
+                                            <div class=" clearfix">
+                                                <div class="product-prices">
+                                                    <span class="">
+                                                        <span class=" red_color" data-price="17528.0">
+                                                            ${{item.item_price }}</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
+                                        <!-- clearfix ensures that the internal elements of the form do not overflow. -->
+                                        <form class="clearfix"
+                                            action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
+                                            method="post">
+                                            {% csrf_token %}
+
+
+                                            <div class="clearfix text-center pt-2 pb-3 ">
+
+                                                <!-- The for attribute in the <label> tag must contain the id of the input field to which it is associated -->
+                                                <label class="pt-4 fw-bold"
+                                                    for="quantity-{{ item.id }}">Cantidad</label>
+
+                                                <!-- The for attribute on a <label> tag is used to associate the label with a specific input field. When you click the label, the associated input field automatically receives focus. -->
+                                                <div>
+                                                    <div class="container d-flex align-items-center align-items-center py-3 ms-auto"
+                                                        style="max-width: 200px;">
+
+
+                                                        <!-- Increase button -->
+                                                        <button onclick="incrementQuantity('{{ item.id }}', 'quantity')"
+                                                            type="button" class="btn btn-light minus"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" fill="currentColor" class="bi bi-plus"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <!-- quantity input -->
+                                                        <div class="mx-2 ">
+                                                            <input style="width: 50px;" type="number" name="quantity"
+                                                                id="quantity-{{ item.id }}" value="1"
+                                                                class="form-control " autocomplete="off">
+                                                        </div>
+
+                                                        <!-- Decrease button -->
+                                                        <button onclick="decrementQuantity('{{ item.id }}', 'quantity')"
+                                                            type="button" class="btn btn-light plus">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" fill="currentColor" class="bi bi-dash-lg"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8" />
+                                                            </svg>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <button type="submit" class="btn btn-success" style="width: 100%;">
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div class="ld ld-ring ld-spin"></div>
+                            </div>
+                        </div>
+                        <!-- FINISH MODAL CONTENT -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- END  MENUS CATEGORIES -->
+        {% endblock %}
+</body>

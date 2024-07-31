@@ -1,80 +1,57 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import DessertsItems, DrinksItems, Item, SidesItems
+from .models import  Category, Items
 from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 def home(request):
     
-    # Retrieve all objects from the 'Item' model and assign them to 'item_list'
-    item_list = Item.objects.all()
+    category_list = Category.objects.all()
     
-    # Retrieve all objects from the 'DrinksItems' model and assign them to 'DrinksItems_list'
-    drinksItems_list = DrinksItems.objects.all()
+    item_list = Items.objects.all()
     
-    # Retrieve all objects from the 'dessertsItems' model and assign them to 'dessertsItems_list'
-    dessertsItems_list = DessertsItems.objects.all()
-    
-    # Retrieve all objects from the 'SidesItems' model and assign them to 'SidesItems_list'
-    sidesItems_list = SidesItems.objects.all()
-
     context = {
+        
         "item_list": item_list,
-        "drinksItems_list": drinksItems_list,
-        "dessertsItems_list": dessertsItems_list,
-        "sidesItems_list": sidesItems_list,
+        
+        "category_list": category_list,
+       
     }
     
 
-    return render(request, "food/index.html", context)
+    return render(request, "food/example.html", context)
+    # return render(request, "food/index.html", context)
     
 
 
-# item view.
-def item(request):
-    return HttpResponse("This is the item view")
+def ProductsByCategory(request, category_id):
+   
+    objCategory = Category.objects.get(id=category_id)
 
+    
+    product_list = objCategory.products.all()
 
-# detail view.
-def detail(request, item_id):
-    item=get_object_or_404(Item, pk=item_id)
+    
+    category_list = Category.objects.all()
+
+   
     context = {
-        "item": item
-        }
-    return render(request, "food/details.html", context)
+        'category_list': category_list, 
+        'product_list': product_list,  
+    }
+
+    
+    return render(request, 'food/example.html', context)
+
+
+
+
+
 
 
 """VIEWS FOR THE SHOPPING CART"""
 from .cart import Cart
 
-
-def get_product_type(product_type, product_id): 
-    """
-    This function determine what type of model the product belongs to and obtain the product information.
-    """
-    
-    model_type={
-        
-        'itemx':Item,
-        'drinks':DrinksItems,
-        'desserts':DessertsItems,
-        'sides':SidesItems,
-       
-    }
-    
-    
-    # from model_type 'dictionary' get the model type to which the product belongs
-    model=model_type.get(product_type)
-    
-    
-    if model is not None:
-        
-        #finally get the product information
-        return get_object_or_404(model, pk=product_id)
-    
-    return None
-    
-    
 
 def cart(request):
     """
@@ -100,9 +77,10 @@ def add_item(request, product_id, product_type):
                 
         quantity = 1
 
-
+    print(product_type, product_id)
+    
     # obtain the product
-    product = get_product_type(product_type, product_id)
+    product =  get_object_or_404(product_type, product_id)
     
     
     # Create an instance of the Cart class (from the cart.py file)
@@ -164,14 +142,13 @@ def clean_cart(request):
 """STEPS I DID TO CREATE THE PROYECT """
 
 
-#TODO:1. create the models where we will store the information about the products offered by the restaurant (main, drinks..etc)
+#TODO:1. create the model where we will store the information about the products offered by the restaurant 
 
 
 #TODO: 2. create the home page and render all the products in the page
 
 
-#TODO: 3. Create a view called details.html to see the details of the products, in my case the details of the products are seen
-# in the modal window
+#TODO: 3. the details of the product will be seen in a modal window
 
 
 #TODO: 4. Create the cart in the nav bar
@@ -186,19 +163,16 @@ def clean_cart(request):
 #TODO: 6. Create the Cart views (add to cart, delete items etc..)
 
 
-#TODO: 7. Since I have 4 models, I create a separate function to determine what type of model the product belongs to.
+#TODO: 7. Create the add_item url
 
 
-#TODO: 8. Create the add_item url
+#TODO: 8. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
 
 
-#TODO: 9. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
+#TODO: 9. Create the url for the 'delete_item view' and put it to work in the navbar cart
 
 
-#TODO: 10. Create the url for the 'delete_item view' and put it to work in the navbar cart
-
-
-#TODO: 11.  until now, I have only used the add_view url with the main menu. I will now add it for drinks, desserts, and sides.
+#TODO: 10.  until now, I have only used the add_view url with the main menu. I will now add it for drinks, desserts, and sides.
 
 
 

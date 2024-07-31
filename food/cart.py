@@ -53,7 +53,7 @@ class Cart:
             self.cart[product.id] = {
                 
                 "product_id": product.id,             
-                'type': product.product_type,             
+                'product_type': product.category,             
                 "name": product.item_name ,                  
                 "quantity": quantity,                    
                 "price": str(product.item_price),           

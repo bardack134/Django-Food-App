@@ -1,0 +1,88 @@
+<div class="container row gy-5 py-5">
+    {% for product in product_list %}
+    <div class="col-lg-3 offset-md-1 d-flex">
+        <div class="card h-100 d-flex flex-column" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <a href="{{ product.imagen.url }}" class="">
+                    <img src="{{ product.imagen.url }}" class="img-fluid" style="height: 210px;" alt="">
+                </a>
+                <h4>{{ product.item_name }}</h4>
+                <p class="mt-auto">{{ product.item_description }}</p>
+                <p class="mt-auto">${{ product.item_price }}</p>
+                <div class="mt-auto">
+                    <a data-bs-toggle="modal" data-bs-target="#detallesModal{{ product.id }}" class="btn btn-info" style="background-color: #F3B95F; border-color: #F3B95F;">
+                        View details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vertically centered modal -->
+    <div class="modal fade" id="detallesModal{{ product.id }}" tabindex="-1" aria-labelledby="detallesModalLabel{{ product.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="ld-over p-2">
+                    <div class="row variant-fancy-box">
+                        <div class="col-12 col-md-2 p-0">
+                            <div class="text-center">
+                                <div class="image">
+                                    <img alt="{{ product.item_name }}" title="{{ product.item_name }}" class="lazy" src="{{ product.imagen.url }}" width="320" height="320">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 offset-md-4">
+                            <div class="product-head mb-3">
+                                <div class="product-title nunito-sans">{{ product.item_name }}</div>
+                            </div>
+                            <div class="product-head mb-3">
+                                <div class="product-title">{{ product.item_description }}</div>
+                            </div>
+                            <div class="hero">
+                                <div class="price-from">Precio</div>
+                                <div class="clearfix">
+                                    <div class="product-prices">
+                                        <span class="">
+                                            <span class="red_color" data-price="17528.0">${{ product.item_price }}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <form class="clearfix" action="{% url 'food:add_item' product_id=product.id product_type=product.product_type %}" method="post">
+                                {% csrf_token %}
+                                <div class="clearfix text-center pt-2 pb-3">
+                                    <label class="pt-4 fw-bold" for="quantity-{{ product.id }}">Cantidad</label>
+                                    <div>
+                                        <div class="container d-flex align-items-center py-3 ms-auto" style="max-width: 200px;">
+                                            <button onclick="incrementQuantity('{{ product.id }}')" type="button" class="btn btn-light minus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                                </svg>
+                                            </button>
+                                            <div class="mx-2">
+                                                <input style="width: 50px;" type="number" name="quantity" id="quantity-{{ product.id }}" value="1" class="form-control" autocomplete="off">
+                                            </div>
+                                            <button onclick="decrementQuantity('{{ product.id }}', 'quantity')" type="button" class="btn btn-light plus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <button type="submit" class="btn btn-success" style="width: 100%;">Add to Cart</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="ld ld-ring ld-spin"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+

@@ -6,7 +6,7 @@
     <!-- MENU NAV BAR -->
     <ul class="nav nav-tabs d-flex justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100"
         role="tablist">
-
+    
         <li class="nav-item" role="presentation">
             <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Main" aria-selected="true" role="tab">
                 <h4 class="red_color">Main</h4>
@@ -397,7 +397,7 @@
                                             </div>
 
                                             <form class="clearfix"
-                                                action="{% url 'food:add_item' product_id=item.id product_type='desserts' %}"
+                                                action="{% url 'food:add_item' product_id=item.id product_type='drinks' %}"
                                                 method="post">
                                                 {% csrf_token %}
 
