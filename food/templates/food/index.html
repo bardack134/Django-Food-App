@@ -65,7 +65,7 @@
 
 
                 {% for item in product_list %}
-                <div class="col-12 col-lg-3 d-flex text-center justify-content-start py-3">
+                <div class="col-12 col-sm-6 col-lg-3 d-flex text-center justify-content-start py-3">
                     <!-- Flexbox is a tool for designing elements that align and distribute space within a container. -->
                     <div class="card h-100 d-flex flex-column " style="width: 18rem;">
 
@@ -102,15 +102,15 @@
                         <div class="modal-content">
                             <div class="ld-over p-2">
                                 <div class="row variant-fancy-box">
-                                    <div class="col-12 col-md-2 p-0">
+                                    <div class="col-12 col-lg-2 p-0">
                                         <div class="text-center ">
-                                            <div class="image">
+                                            <div class="container image">
                                                 <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                    class="lazy" src="{{ item.imagen.url }}" width="320" height="320">
+                                                    class="lazy custom-image" src="{{ item.imagen.url }}" width="320" height="320">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6 offset-md-4 text-center">
+                                    <div class="col-12 col-lg-5 offset-lg-4 text-center">
                                         <div class="product-head mb-3">
                                             <div class="product-title nunito-sans">
                                                 {{ item.item_name }}
@@ -157,6 +157,7 @@
 
 
                                                         <!-- Increase button -->
+                                                         <!-- incrementQuantity is a javascript funtion to increase or decrease the amount of the input using these external buttons  -->
                                                         <button onclick="incrementQuantity('{{ item.id }}', 'quantity')"
                                                             type="button" class="btn btn-light minus"><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="20"

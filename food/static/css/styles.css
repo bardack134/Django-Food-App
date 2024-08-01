@@ -124,3 +124,11 @@
     left: 0;
 }
 
+/* These styles will only be applied when the screen width is 370 pixels or less. It is to fit the image to the container*/
+@media (max-width: 370px) {
+    .custom-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+

@@ -53,11 +53,11 @@ class Cart:
             self.cart[product.id] = {
                 
                 "product_id": product.id,             
-                'product_type': product.category,             
                 "name": product.item_name ,                  
                 "quantity": quantity,                    
                 "price": str(product.item_price),           
                 "image": product.imagen.url,          
+                'product_type': product.product_type.name,             
                 "subtotal": str(quantity * product.item_price),  # We calculate the subtotal
             }
         

@@ -56,17 +56,17 @@ def home(request, category_id=None):
 """VIEWS FOR THE SHOPPING CART"""
 from .cart import Cart
 
-
-def cart(request):
-    """
-    View to display the shopping cart
-    """
+# i will work later with this one
+# def cart(request):
+#     """
+#     View to display the shopping cart
+#     """
     
-    return render(request, 'cart.html')
+#     return render(request, 'cart.html')
 
 
 
-def add_item(request, product_id, product_type):
+def add_item(request, product_id):
     """
     Add a Product to Cart
     """
@@ -81,10 +81,10 @@ def add_item(request, product_id, product_type):
                 
         quantity = 1
 
-    print(product_type, product_id)
+    print(f'you sent a product with the following id {product_id}')
     
     # obtain the product
-    product =  get_object_or_404(product_type, product_id)
+    product =  get_object_or_404(Items, id=product_id)
     
     
     # Create an instance of the Cart class (from the cart.py file)
@@ -106,13 +106,13 @@ def add_item(request, product_id, product_type):
 
 
 
-def delete_item(request, product_id, product_type):
+def delete_item(request, product_id):
     """
     # This function remove a product from the shopping cart.
     """
     
     # obtain the product
-    product = get_product_type(product_type, product_id)
+    product = get_object_or_404(Items, id=product_id)
 
 
     # Create a "cart_instance" object from the "Cart" class and pass the "request" object as a parameter.
@@ -176,9 +176,8 @@ def clean_cart(request):
 #TODO: 9. Create the url for the 'delete_item view' and put it to work in the navbar cart
 
 
-#TODO: 10.  until now, I have only used the add_view url with the main menu. I will now add it for drinks, desserts, and sides.
 
 
 
 
-
+ 
