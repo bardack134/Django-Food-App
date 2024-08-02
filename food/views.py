@@ -101,8 +101,9 @@ def add_item(request, product_id):
         return redirect('/')
 
     
-    # Redirect to the homepage after adding the product
-    return redirect('food:home')
+    # Redirect the user to the same page where he made the request
+    # more infor in https://docs.djangoproject.com/en/5.0/ref/request-response/
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 

@@ -139,7 +139,7 @@
                                         <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
                                         <!-- clearfix ensures that the internal elements of the form do not overflow. -->
                                         <form class="clearfix"
-                                            action="{% url 'food:add_item' product_id=item.id product_type='itemx' %}"
+                                            action="{% url 'food:add_item' product_id=item.id %}"
                                             method="post">
                                             {% csrf_token %}
 
