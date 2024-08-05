@@ -17,4 +17,6 @@ urlpatterns = [
     #search a product acording to its category
     path('ProductsByCategory/<int:category_id>', views.home, name='ProductsByCategory'),
     
+    path('cart', views.cart, name='cart'),
+    
 ]

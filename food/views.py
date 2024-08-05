@@ -56,13 +56,13 @@ def home(request, category_id=None):
 """VIEWS FOR THE SHOPPING CART"""
 from .cart import Cart
 
-# i will work later with this one
-# def cart(request):
-#     """
-#     View to display the shopping cart
-#     """
+
+def cart(request):
+    """
+    View to display the shopping cart
+    """
     
-#     return render(request, 'cart.html')
+    return render(request, 'food/cart.html')
 
 
 
@@ -166,16 +166,16 @@ def clean_cart(request):
 #TODO: 5. Create the Cart class 'cart.py' to control the shopping cart (add to cart, delete items etc..)
 
 
-#TODO: 6. Create the Cart views (add to cart, delete items etc..)
+#TODO: 6. Create the Cart views (add to cart, delete items etc..) and its urls
 
 
-#TODO: 7. Create the add_item url
+#TODO: 7. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
 
 
-#TODO: 8. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
+#TODO: 8. Create the url for the 'delete_item view' and put it to work in the navbar cart
 
 
-#TODO: 9. Create the url for the 'delete_item view' and put it to work in the navbar cart
+#TODO: 9. Create the 'go to cart view' with very simple design, when the cart is working i  will improve the design
 
 
 

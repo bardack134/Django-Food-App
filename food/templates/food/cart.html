@@ -1,0 +1,43 @@
+{% extends "food/base.html" %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Start Hero -->
+    <!-- hero is a personal css class to change background color -->
+    <div class="hero">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-12 col-sm-8 col-lg-12">
+
+                    <div class="card">
+
+                        <h1 class="card-title text-center">Shopping Cart</h1>
+                        <div class=" container d-flex justify-content-center align-items-center">
+                            <div class="container px-5"><strong>Product</strong></div>
+                            <div class="container px-5"><strong>Price</strong></div>
+                            <div class="container px-4"><strong>Quantity</strong></div>
+                            <div class="container px-4"><strong>Total</strong></div>
+                            <div class="container px-4"><strong></strong></div>
+
+                        </div>
+                        <div class="card-body">
+                            {% for key, value in request.session.cart.items %}
+
+                            <h2>{{ value.name }}</h2>
+                            <h2>{{ value.quantity }}</h2>
+                            <h2>{{ value.price }}</h2>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                 </div>
+        </div>
+    </div>
+
+    <!-- End Hero -->
+
+
+
+
+{% endblock %}

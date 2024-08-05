@@ -1,59 +1,89 @@
 {% extends "food/base.html" %}
+{% load static %}
 
 <body>
     {% block content %}
-  
-   <!-- A full-width container that spans the entire width of the window -->
-   <div class="container-fluid">
 
-    <!-- A flex container that centers its content horizontally -->
-    <div class="d-flex justify-content-center bg-transparent" style="width: 100%;">
-
-        <!-- Bootstrap navbar with expandable and responsive features -->
-        <nav class="navbar navbar-expand-lg ">
-
-            <!-- Offcanvas trigger button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Offcanvas menu -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
-
-                <!-- header in the offcanvas -->
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="navbarOffcanvasLgLabel">Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!-- Start Hero -->
+    <!-- hero is a personal css class to change background color -->
+    <div class="hero">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-12 col-sm-8 col-lg-6">
+                    <img src="{% static 'img/burger.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                        width="700" height="500" loading="lazy">
                 </div>
-
-                <!-- body in the offcanvas  -->
-                <div class="offcanvas-body">
-
-                    <!-- Unordered list for navbar items -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <!-- Navbar item for 'All Categories' link -->
-                        <li class="nav-item">
-                            <a class="nav-link active red_color" aria-current="page" href="{% url 'food:home' %}">
-                                <h4>All Categories</h4>
-                            </a>
-                        </li>
-
-                        <!-- Loop through categories to create a navbar item for each -->
-                        {% for category in category_list %}
-                        <li class="nav-item">
-                            <a class="nav-link active red_color" aria-current="page" href="{% url 'food:ProductsByCategory' category.id %}">
-                                <h4>{{ category.name }}</h4>
-                            </a>
-                        </li>
-                        {% endfor %}
-
-                    </ul>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3" style="font-family: 'Amatic SC', cursive;">Enjoy Your
+                        Healthy <br> Delicious Food</h1>
+                    <p class="lead" style="font-family: 'Roboto Flex', sans-serif;">The best Food you can find in all
+                        market</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </div>
-</div>
+
+    <!-- End Hero -->
+
+    <!-- A full-width container that spans the entire width of the window -->
+    <div class="container-fluid">
+
+        <!-- A flex container that centers its content horizontally -->
+        <div class="d-flex justify-content-center bg-transparent" style="width: 100%;">
+
+            <!-- Bootstrap navbar with expandable and responsive features -->
+            <nav class="navbar navbar-expand-lg ">
+
+                <!-- Offcanvas trigger button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Offcanvas menu -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg"
+                    aria-labelledby="navbarOffcanvasLgLabel">
+
+                    <!-- header in the offcanvas -->
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="navbarOffcanvasLgLabel">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <!-- body in the offcanvas  -->
+                    <div class="offcanvas-body">
+
+                        <!-- Unordered list for navbar items -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <!-- Navbar item for 'All Categories' link -->
+                            <li class="nav-item">
+                                <a class="nav-link active red_color" aria-current="page" href="{% url 'food:home' %}">
+                                    <h4>All Categories</h4>
+                                </a>
+                            </li>
+
+                            <!-- Loop through categories to create a navbar item for each -->
+                            {% for category in category_list %}
+                            <li class="nav-item">
+                                <a class="nav-link active red_color" aria-current="page"
+                                    href="{% url 'food:ProductsByCategory' category.id %}">
+                                    <h4>{{ category.name }}</h4>
+                                </a>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 
     <!--  MENUS CATEGORIES -->
 
@@ -106,7 +136,8 @@
                                         <div class="text-center ">
                                             <div class="container image">
                                                 <img alt="{{ item.item_name }}" title="{{ item.item_name }}"
-                                                    class="lazy custom-image" src="{{ item.imagen.url }}" width="320" height="320">
+                                                    class="lazy custom-image" src="{{ item.imagen.url }}" width="320"
+                                                    height="320">
                                             </div>
                                         </div>
                                     </div>
@@ -138,8 +169,7 @@
 
                                         <!-- We will transfer the products to the cart 'session['cart']' when the user clicks on the 'add to cart' button -->
                                         <!-- clearfix ensures that the internal elements of the form do not overflow. -->
-                                        <form class="clearfix"
-                                            action="{% url 'food:add_item' product_id=item.id %}"
+                                        <form class="clearfix" action="{% url 'food:add_item' product_id=item.id %}"
                                             method="post">
                                             {% csrf_token %}
 
@@ -157,7 +187,7 @@
 
 
                                                         <!-- Increase button -->
-                                                         <!-- incrementQuantity is a javascript funtion to increase or decrease the amount of the input using these external buttons  -->
+                                                        <!-- incrementQuantity is a javascript funtion to increase or decrease the amount of the input using these external buttons  -->
                                                         <button onclick="incrementQuantity('{{ item.id }}', 'quantity')"
                                                             type="button" class="btn btn-light minus"><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="20"
@@ -207,7 +237,9 @@
                 </div>
                 {% endfor %}
             </div>
+
         </div>
+    </div>
         <!-- END  MENUS CATEGORIES -->
         {% endblock %}
 </body>
