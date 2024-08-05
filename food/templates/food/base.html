@@ -52,165 +52,143 @@
                 </ul>
 
                 <!-- Start Cart -->
-                <!-- ms-auto is used to apply an automatic left margin -->
                 <ul class="navbar-nav ms-auto">
-
-                    <!-- nav item indicates that the element is a navigation item -->
-                    <!-- dropdown: This class is used to create a pull down menu component -->
-                    <li class="  nav-item dropdown ">
-
-                        <!-- dropdown-toggle indicates that it is a  pull down menu item. This is the link that opens the  pull down menu. -->
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle position-relative" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-
-
-                            <!-- font awesome cart-->
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27"
-                                viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <!-- Font Awesome cart icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27" viewBox="0 0 576 512">
                                 <path fill="#d04848"
                                     d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
                             </svg>
-                            <!-- end font awesome -->
+                            <!-- End Font Awesome -->
 
-
-                            <!-- Code to show the number of items in the cart, in the nav bar -->
+                            <!-- Number of items in the cart -->
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-
                                 {{request.session.cart.items|length}}
-
                             </span>
-                            <!-- end number of items -->
-                            <strong class=""> CART</strong>
+                            <strong class="">CART</strong>
                         </a>
 
+                        <!-- Dropdown menu for the cart -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                        <!-- "dropdown-menu-end": Align the menu to the right.  -->
-                        <!-- "dropdown-menu": Container for the dropdown menu. The items within this list (<li>) represent the menu options. -->
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdow">
-                            <!-- aria-labelledby: This attribute indicates that the dropdown menu is associated with the element with the id navbarDropdown, for accessibility.     -->
-
-
-                            <!-- title of the products information inside the cart  -->
-                            <!-- Each cart item is represented by a 'dropdown-item'.  -->
-                            <li class="dropdown-item">
-
-
-                                <!--the following class Line up the titles and products equally in a row. -->
-                                <!-- https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content -->
-                                <div class="container d-flex justify-content-between   d-none d-md-flex">
-                                    
-
-                                    <!-- d-none d-md-flex to make titles hide and show according to the screen more information here https://getbootstrap.com/docs/5.3/layout/breakpoints/ -->
-
-                                    <div class="container px-5"><strong>Product</strong></div>
-
-                                    <div class="container px-5 "><strong>Price</strong></div>
-
-                                    <div class="container px-4 "><strong>Quantity</strong></div>
-
-                                    <div class="container px-4 "><strong>Total</strong></div>
-
-                                    <div class="container px-4 "><strong></strong></div>
+                            <!--CART FOR SMALL SCREENS -->
+                            <!-- https://getbootstrap.com/docs/5.3/utilities/display/#hiding-elements -->
+                            <div class="container d-block d-md-none">
+                                <div class="container d-flex justify-content-between">
+                                    <div class="px-5 "><strong>Probando</strong></div>
 
                                 </div>
 
-
-
-
-                            </li>
-
-                            
-
-                            <li class="container">
-                                <!-- horizontal line -->
                                 <hr>
-                            </li>
 
+                                {% for key, value in request.session.cart.items %}
+                                <div class="container d-flex justify-content-between">
+                                    <div class=" row align-self-center text-center">
 
-                            {% for key, value in request.session.cart.items %}
-
-                            <!-- Cart products are saved in the 'request.session' so we can easily access them -->
-
-                            <!-- cart elements or cart products with his information -->
-                            <li>
-
-                                <div class="  dropdown-item" href="#">
-                                    <!-- Each cart item is represented by a 'dropdown-item'.  -->
-
-                                    
-                                    <div class="container d-flex flex-sm-column justify-content-between">
-
-                                        <div class="row">
-
-                                            <div class="col-12 col-sm-2 mb-2 pe-5 me-3">
-
-                                                <img src="{{value.image}}" alt="" class="img-thumbnail me-2 " />
-                                            </div>
-
-                                            <div class="col-12 col-sm-2 mb-2  me-3">
-                                                {{value.price}}
-                                            </div>
-
-                                            <div class="col-12 col-sm-2 mb-2  me-3">
-                                                {{value.quantity}}
-                                            </div>
-
-                                            <div class="col-12 col-sm-2 mb-2  me-3">
-                                                $ {{value.subtotal}}
-                                            </div>
-
-                                            <!-- delete font awesome -->
-                                            <a class="col-12 col-sm-2 mb-2  me-3"
-                                                href="{% url 'food:delete_item' product_id=value.product_id %}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    fill="currentColor" class="bi bi-trash3 text-danger"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                                                </svg>
-
-                                            </a>
+                                        <div class="col-12 align-self-center px-5">
+                                            <img src="{{value.image}}" alt="" class="img-thumbnail me-2" />
                                         </div>
+
+                                        <div class="row align-self-center text-center">
+                                            <div class="col-4 "><strong>Price</strong></div>
+                                            <div class="col-4 offset-4 align-self-center ps-5">${{value.price}}</div>
+                                        </div>
+
+                                        <div class="row align-self-center text-center">
+                                            <div class="col-4 "><strong>Quantity</strong></div>
+                                            <div class="col-4 offset-4 align-self-center ps-5">{{value.quantity}}</div>
+                                        </div>
+
+                                        <div class="row align-self-center text-center">
+                                            <div class="col-4 "><strong>Subtotal</strong></div>
+                                            <div class="col-4 offset-4 align-self-center ps-5">${{value.subtotal}}</div>
+                                        </div>
+
+                                                                               
+                                        <a class="col-12 me-3" href="{% url 'food:delete_item' product_id=value.product_id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
+                                            <path
+                                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                </div>
+                                {% if not forloop.last %}
+                                <hr>
+                                {% endif %}
+                                {% endfor %}
+
+                                <div class="pt-3 pb-1">
+                                    <button type="button" class="btn btn-success" style="width: 100%;">GO TO
+                                        CART</button>
+                                </div>
+                            </div>
+                            <!-- END CART FOR SMALL SCREENS -->
+
+
+
+                            <!-- CART FOR LARGE SCREENS -->
+                             <!-- https://getbootstrap.com/docs/5.3/utilities/display/#hiding-elements -->
+                            <div class="container d-none d-md-block">
+                                <div class="container container d-flex justify-content-center align-items-center">
+                                    <div class="container px-5"><strong>Product</strong></div>
+                                    <div class="container px-5"><strong>Price</strong></div>
+                                    <div class="container px-4"><strong>Quantity</strong></div>
+                                    <div class="container px-4"><strong>Total</strong></div>
+                                    <div class="container px-4"><strong></strong></div>
+
+                                </div>
+
+                                <hr>
+
+                                {% for key, value in request.session.cart.items %}
+                                <div class="container d-flex justify-content-center align-items-center">
+
+                                    <div class="container px-5">
+                                        <img src="{{value.image}}" alt="" class="img-thumbnail me-2" />
                                     </div>
 
+                                    <div class="container px-5">{{value.price}}</div>
 
+                                    <div class="container ps-4">{{value.quantity}}</div>
 
+                                    <div class="container ps-4">${{value.subtotal}}</div>
+
+                                    <a class="me-3" href="{% url 'food:delete_item' product_id=value.product_id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                        </svg>
+                                    </a>
                                 </div>
-                            </li>
-
-                            <!-- The following code is to avoid having a horizontal line between the last product in the list and the button -->
-                            <!-- https://docs.djangoproject.com/en/5.0/ref/templates/builtins/ -->
-                            {% if not forloop.last %}
-                            <li class="container">
-                                <!-- horizontal line /True if this is the last time through the loop  -->
+                                {% if not forloop.last %}
                                 <hr>
-                            </li>
-                            {% endif %}
+                                {% endif %}
+                                {% endfor %}
 
-                            <!-- bugging proccess, checking if value.type has a value -->
-                            <!-- <p>product_id: {{ value.product_id }}, product_type: {{ value.type }}</p> -->
-                            {% endfor %}
-
-                            <!-- end cart elements -->
-
-                            <div class="container pt-3 pb-1 ">
-
-                                <button type="button" class=" btn btn-success" style="width: 100%;">
-                                    GO TO CART
-                                </button>
-
+                                <div class="pt-3 pb-1">
+                                    <button type="button" class="btn btn-success" style="width: 100%;">GO TO
+                                        CART</button>
+                                </div>
                             </div>
+                            <!-- END CART FOR LARGE SCREENS -->
 
                         </ul>
                     </li>
                 </ul>
+                <!-- End Cart -->
 
-                <!-- Finish Cart -->
 
 
 
             </div>
+
         </div>
     </header>
 
@@ -255,7 +233,7 @@
     <!-- quantity.s -->
     <script src="{% static 'js/quantity.js' %}"></script>
 
-  
+
 </body>
 
 </html>

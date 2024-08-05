@@ -144,6 +144,7 @@ def clean_cart(request):
 
 
 
+
 """STEPS I DID TO CREATE THE PROYECT """
 
 
