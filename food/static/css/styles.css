@@ -146,8 +146,47 @@
     width: 100%;
 }
 
+/* This is for the content of the body takes up the entire page. */
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
+/*  */
+.text-format {
+    /* This ensures that the text does not break across multiple lines and remains on a single line. */
+    white-space: nowrap; 
+    /* Hide any overflowing text */
+    overflow: hidden; 
+    /* Adds an ellipsis (...) to the end of the visible text */
+    text-overflow: ellipsis; 
+}
+
+.equal-height {
+    display: flex;
+    align-items: center;
+    min-height: 70px; 
+}
+
+/* ---- Another way to center the products inside the shopping car, cart.html---- */
+/* .equal-height .row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+} */
+
+/* .equal-height .col-lg-1, 
+.equal-height .col-lg-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+
+.product-image {
+    max-width: 100%;
+    max-height: 60px; 
+    object-fit: contain; 
+}
+/* ---------------------------------- */
