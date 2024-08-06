@@ -105,7 +105,7 @@
 }
 
 
-/* The ::after element is used to insert content after the select element */
+/* The ::after element is used to insert content after the select element , the horizontal line down the categories*/
 .navbar .nav-link:after {
 
     /* This property is required when using (::after and ::before) element. */
@@ -132,3 +132,22 @@
     }
 }
 
+
+.cart-warning-message{
+    background-color: #FDE767;
+    width: 100%;
+    color: #D04848;
+} 
+
+/* grey background */
+.grey-background {
+    background-color: #F6F5F2;
+    height: 100%;
+    width: 100%;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
