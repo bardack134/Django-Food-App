@@ -139,8 +139,9 @@ def clean_cart(request):
     cart_instance.clear()
 
 
-    # Redirect the user to the store page after clearing the cart.
-    return render(request, 'cart.html')
+    # Redirect the user to the same page where he made the request
+    # more infor in https://docs.djangoproject.com/en/5.0/ref/request-response/
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 

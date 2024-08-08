@@ -4,15 +4,16 @@
 {% block content %}
 
 <!-- Start Hero -->
-<div class="grey-background">
+<div class="grey-background py-4">
     <div class="container px-4">
-        <div class="d-flex align-items-center g-5 py-4">
-            <div class="col-12 col-sm-8 col-lg-12">
+        <div class="row justify-content-around g-5 py-4">
+            <div class="col-12 col-sm-12 col-lg-8">
                 <div class="card">
-                    <h1 class="card-title text-center">Shopping Cart</h1>
+                    <h4 class="card-title text-center">Shopping Cart</h4>
                     <div class="container d-flex justify-content-center align-items-center py-3">
                         <div class="px-5">
-                            <strong class="cart-warning-message">Check your order carefully. Check quantities and prices before finalising your purchase.</strong>
+                            <strong class="cart-warning-message">Check your order carefully. Check quantities and prices
+                                before finalising your purchase.</strong>
                         </div>
                     </div>
 
@@ -35,33 +36,101 @@
                             <ul class="list-group list-group-flush">
                                 {% for key, value in request.session.cart.items %}
                                 <li class="list-group-item equal-height">
-                                    <div class="row d-flex justify-content-center align-items-center" style="width: 100%;">
+                                    <div class="row d-flex justify-content-center align-items-center"
+                                        style="width: 100%;">
                                         <div class="col-lg-1 d-flex justify-content-center align-items-center ">
-                                            
-                                            <img src="{{ value.image }}" alt="{{ value.name }} image" class="product-image">
+
+                                            <img src="{{ value.image }}" alt="{{ value.name }} image"
+                                                class="product-image">
                                         </div>
                                         <!-- I put 'd-flex justify....align...' to all columns to ensure horizontal and vertical alignment within them -->
-                                        <div class="col-lg-1 text-format d-flex justify-content-center align-items-center">{{ value.name }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{ value.price }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{ value.quantity }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">${{ value.subtotal }}</div>
+                                        <div
+                                            class="col-lg-1 text-format d-flex justify-content-center align-items-center">
+                                            {{ value.name }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{
+                                            value.price }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{
+                                            value.quantity }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">${{
+                                            value.subtotal }}</div>
                                         <div class="col-lg-2 d-flex justify-content-center align-items-center">
                                             <a href="{% url 'food:delete_item' product_id=value.product_id %}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
-                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    fill="currentColor" class="bi bi-trash3 text-danger"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
                                                 </svg>
                                             </a>
                                         </div>
                                     </div>
                                 </li>
                                 {% endfor %}
-                                <li class="list-group-item equal-height"></li>
+                                <li class="list-group-item "></li>
                             </ul>
+                            <div class="row d-flex justify-content-center align-items-center py-2" style="width: 100%;">
+
+                                <div class="col-lg-4 d-flex justify-content-start align-items-center px-5">
+                                    <a href="{% url 'food:clean_cart' %}" style="text-decoration: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                        </svg><span class="clear-cart">Clear Cart</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 d-flex justify-content-center align-items-center">
+
+                                </div>
+                                <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                                    <a href="#" style="text-decoration: none;">
+                                        <span class="clear-cart btn  orange_color fw-bold" role="button">Continue
+                                            Shoping</span>
+
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Start Cart Summary -->
+            <div class="col-12 col-sm-12 col-lg-4 ">
+                <div class="card ">
+                    <div class="card-header " style="background-color: white;">
+                        <h4 class="cart-title text-center fs-4">Cart Summary</h4>
+                    </div>
+                    <div class="card-text card-body mx-1 px-1">
+                        {% for key, value in request.session.cart.items %}
+                        <!-- <div class="d-flex justify-content-center align-items-center "> -->
+                        
+                            <div class="row " >
+                                <p class="col-lg-6 d-flex justify-content-center fw-bold">Subtotal</p>
+                                <p class="col-lg-6 d-flex justify-content-center fw-bold">${{ value.subtotal }}</p>
+                            </div>
+                       
+                            <!-- <div class="d-flex justify-content-between"> -->
+                            <div class=" col-lg-4 d-flex justify-content-around">
+                                <p class="fw-bold">Shipping</p>
+                                <p style="color:rgb(76, 175, 80);">Free</p>
+                            </div>
+
+                            <div class=" col-lg-4 d-flex justify-content-around">
+                                <p class="fw-bold">Total</p>
+                                <p>${{request.session.cartTotalToPay}}</p>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- End Cart Summary -->
         </div>
     </div>
 </div>

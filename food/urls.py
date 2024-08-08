@@ -19,4 +19,7 @@ urlpatterns = [
     
     path('cart', views.cart, name='cart'),
     
+    # Clear cart
+    path('clean_cart', views.clean_cart, name='clean_cart'),
+    
 ]
