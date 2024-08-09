@@ -4,11 +4,11 @@
 {% block content %}
 
 <!-- Start Hero -->
-<div class="grey-background py-4">
-    <div class="container px-4">
-        <div class="row justify-content-around g-5 py-4">
+<div class="py-4">
+    <div class="container p-5  " >
+        <div class="row justify-content-around py-3">
             <div class="col-12 col-sm-12 col-lg-8">
-                <div class="card">
+                <div class="card p-1" >
                     <h4 class="card-title text-center">Shopping Cart</h4>
                     <div class="container d-flex justify-content-center align-items-center py-3">
                         <div class="px-5">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <div class="container text-center">
+                    <div class=" text-center">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="row d-flex justify-content-center align-items-center">
@@ -32,10 +32,10 @@
                         </ul>
                     </div>
                     <div class="card-body py-1">
-                        <div class="container text-center">
+                        <div class="text-center">
                             <ul class="list-group list-group-flush">
                                 {% for key, value in request.session.cart.items %}
-                                <li class="list-group-item equal-height">
+                                <li class="list-group-item equal-height p-1">
                                     <div class="row d-flex justify-content-center align-items-center"
                                         style="width: 100%;">
                                         <div class="col-lg-1 d-flex justify-content-center align-items-center ">
@@ -45,14 +45,11 @@
                                         </div>
                                         <!-- I put 'd-flex justify....align...' to all columns to ensure horizontal and vertical alignment within them -->
                                         <div
-                                            class="col-lg-1 text-format d-flex justify-content-center align-items-center">
+                                            class="col-lg-1 d-flex justify-content-center align-items-center ">
                                             {{ value.name }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{
-                                            value.price }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{
-                                            value.quantity }}</div>
-                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">${{
-                                            value.subtotal }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{value.price }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">{{value.quantity }}</div>
+                                        <div class="col-lg-2 d-flex justify-content-center align-items-center">${{value.subtotal }}</div>
                                         <div class="col-lg-2 d-flex justify-content-center align-items-center">
                                             <a href="{% url 'food:delete_item' product_id=value.product_id %}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -98,30 +95,37 @@
 
             <!-- Start Cart Summary -->
             <div class="col-12 col-sm-12 col-lg-4 ">
-                <div class="card ">
+                <div class="card " style="width: 80%;">
                     <div class="card-header " style="background-color: white;">
                         <h4 class="cart-title text-center fs-4">Cart Summary</h4>
                     </div>
-                    <div class="card-text card-body mx-1 px-1">
-                        {% for key, value in request.session.cart.items %}
+                    <div class="card-text card-body">
+                        
                         <!-- <div class="d-flex justify-content-center align-items-center "> -->
                         
                             <div class="row " >
-                                <p class="col-lg-6 d-flex justify-content-center fw-bold">Subtotal</p>
-                                <p class="col-lg-6 d-flex justify-content-center fw-bold">${{ value.subtotal }}</p>
+                                <p class="col-lg-5 d-flex d-flex justify-content-between fw-bold offset-lg-1">Subtotal</p>
+                                <p class="col-lg-3 d-flex d-flex justify-content-between offset-lg-3">${{ request.session.cartTotalToPay }}</p>
+                            </div>
+                            <div class="row " >
+                                <p class="col-lg-5 d-flex d-flex justify-content-between fw-bold offset-lg-1">Shipping</p>
+                                <p class="col-lg-3 d-flex d-flex justify-content-between offset-lg-3 blue-color" >Free</p>
+                            </div>
+                            <div class="row " >
+                                <p class="col-lg-5 d-flex d-flex justify-content-between fw-bold offset-lg-1">Total</p>
+                                <p class="col-lg-3 d-flex d-flex justify-content-between offset-lg-3">${{request.session.cartTotalToPay}}</p>
+                            </div>
+                            <div class="container col-lg-12  ">
+                                <a href="#" style="text-decoration: none;"  >
+                                    <!-- d-grid gap-2 create a block buttons with a full-width -->
+                                    <span class="clear-cart btn  orange_color fw-bold d-grid gap-2" role="button">Continue
+                                        Shoping</span>
+
+                                </a>
                             </div>
                        
-                            <!-- <div class="d-flex justify-content-between"> -->
-                            <div class=" col-lg-4 d-flex justify-content-around">
-                                <p class="fw-bold">Shipping</p>
-                                <p style="color:rgb(76, 175, 80);">Free</p>
-                            </div>
-
-                            <div class=" col-lg-4 d-flex justify-content-around">
-                                <p class="fw-bold">Total</p>
-                                <p>${{request.session.cartTotalToPay}}</p>
-                            </div>
-                        {% endfor %}
+                          
+                      
 
                     </div>
 
