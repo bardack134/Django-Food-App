@@ -1,0 +1,65 @@
+{% extends "food/base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block content %}
+
+<!-- Start Hero -->
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1 class="blue-color fw-bold">Review Your Order</h1>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header orange_color">
+            <h2 class="mb-0 red_color">Personal Information</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Name:</strong> {{ personal_data.name }}</p>
+            <p><strong>Phone Number:</strong> {{ personal_data.phonenumber }}</p>
+            <p><strong>Address:</strong> {{ personal_data.address }}</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header orange_color">
+            <h2 class="mb-0 red_color">Products to Buy</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for key, value in request.session.cart.items %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ value.name }}</strong> 
+                        </div>
+                        <div class="col-4 text-center"> 
+                            <span>Price: {{ value.price }}</span>
+                        </div>
+                        <div class="col-4 text-end"> 
+                            <span>Quantity: {{ value.quantity }}</span>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="list-unstyled pt-3">
+                <li>
+                    <strong>Total:</strong>
+                    <span>$ {{ request.session.cartTotalToPay }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="py-3 text-center">
+        <a href="{% url 'food:thanks' %}" type="button" class="btn btn-success btn-lg">Confirm Order</a>
+    </div>
+
+</div>
+<!-- End Hero -->
+
+{% endblock %}

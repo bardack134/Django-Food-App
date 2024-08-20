@@ -1,0 +1,20 @@
+{% extends "food/base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block content %}
+
+<!-- Start Hero -->
+
+<div class="container my-5 text-center">
+    <h1 class="mb-4 amatic-sc-bold " style="font-size: 70px">Thank you for your order!</h1>
+    <p class="roboto-flex fs-2">Your order has been confirmed. Will contact you shortly to confirm the details.</p>
+    <a href="{% url 'food:home' %}" class="btn orange_color">Return to Home</a>
+</div>
+
+<!-- End Hero -->
+
+{% endblock %}
