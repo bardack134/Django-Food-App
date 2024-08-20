@@ -1,8 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
+from food.form import UserForm
+from foodApp import settings
 from .models import  Category, Items
 from django.shortcuts import get_object_or_404, render
-
+from twilio.rest import Client
 # Create your views here.
     
 def home(request, category_id=None):
@@ -51,11 +54,89 @@ def home(request, category_id=None):
     return render(request, 'food/index.html', context)
 
 
+def user_data(request):
+    """
+    view that corresponds to where the user enters their data for shipping
+    """
+    if request.method == 'POST':
+        
+        # form with user data
+        form=UserForm(request.POST)
+        
+        if form.is_valid():
+            
+            # We save the data in the session
+            request.session['personal_data'] = form.cleaned_data
+            
+            # Redirects to the confirmation page
+            return redirect('food:confirmation')
+            
+    else:        
+      
+        form=UserForm()
+    
+        context = {
+                "form": form,     
+                }
+    
+        return render(request, 'food/userData.html', context)    
+    
+    
+def confirmation(request):
+    """
+    This view is the confirmation page, show  the user's details and the products they are purchasing.
+    """
+    # user data is saved in the session
+    personal_data = request.session.get('personal_data')
+    
+    context = {
+                'personal_data': personal_data,    
+                }    
+        
+    return render(request, 'food/confirmation.html', context)
+    
+    
+def thanks(request):    
+    """
+    This view sends the information thatorder was made while sending the data to the restaurant.
+    """
+    account_sid = settings.TWILIO_ACCOUNT_SID
+    auth_token = settings.TWILIO_AUTH_TOKEN
+    
+    client = Client(account_sid, auth_token)
 
+    personal_data = request.session.get('personal_data')
+    
+    cart=request.session.get('cart')
+    
+    # user data
+    name=personal_data['name']
+    phonenumber=personal_data['phonenumber']
+    address=personal_data['address']
+    
+    items_list=[]
+    
+    for key, value in cart.items():
+        item_name=value['name']
+        item_price=value['price']
+        item_quantity=value['quantity']
+        items_list.append(f'{item_name} - ${item_price} - {item_quantity}')
+    
+    items_string='\n'.join(items_list)    
+    
+    message = client.messages.create(
+        body=f"name={name}\n phonenumber={phonenumber}\n address={address}\n products={items_string} \n total=${request.session['cartTotalToPay']} ",
+        from_="+12564620138",
+        to="+8107045317684",
+    )
 
+    clean_cart(request)
+    
+    return render(request, 'food/thanks.html')
+    
+                  
 """VIEWS FOR THE SHOPPING CART"""
 from .cart import Cart
-
 
 def cart(request):
     """
@@ -144,43 +225,3 @@ def clean_cart(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-
-
-"""STEPS I DID TO CREATE THE PROYECT """
-
-
-#TODO:1. create the model where we will store the information about the products offered by the restaurant 
-
-
-#TODO: 2. create the home page and render all the products in the page
-
-
-#TODO: 3. the details of the product will be seen in a modal window
-
-
-#TODO: 4. Create the cart in the nav bar
-
-
-#TODO: when you press button ' the add to cart'  the products should be added to the cart
-
-
-#TODO: 5. Create the Cart class 'cart.py' to control the shopping cart (add to cart, delete items etc..)
-
-
-#TODO: 6. Create the Cart views (add to cart, delete items etc..) and its urls
-
-
-#TODO: 7. (main menu) In the modal window 'index.html', i passed the url 'food:add_item' with the neccessary parameters for our 'add_item view'
-
-
-#TODO: 8. Create the url for the 'delete_item view' and put it to work in the navbar cart
-
-
-#TODO: 9. Create the 'go to cart view' with very simple design, when the cart is working i  will improve the design
-
-
-
-
-
-
- 

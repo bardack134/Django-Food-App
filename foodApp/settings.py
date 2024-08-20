@@ -11,7 +11,17 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import environ
 from pathlib import Path
+
+# environment variables
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+
+# access the environmental variables 
+TWILIO_ACCOUNT_SID=env("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN=env("TWILIO_AUTH_TOKEN")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +36,7 @@ SECRET_KEY = 'django-insecure-w*4oai7d#v22_9lgk3dahs$_=2fh3r^#2lnqekh*!2^*7efu%$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.3.22', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'food',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +138,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #se utiliza para poder trabajar con imagenes en nuestro proyecto, media es la carpeta donde se van a guardar nuestras imagenes
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+

@@ -22,4 +22,13 @@ urlpatterns = [
     # Clear cart
     path('clean_cart', views.clean_cart, name='clean_cart'),
     
+    #The user enters his data
+    path('cart/user_data', views.user_data, name='user_data'),
+   
+    path('cart/user_data/confirmation', views.confirmation, name='confirmation'),
+    
+    path('cart/user_data/thanks', views.thanks, name='thanks'),
+    
+    
+    
 ]
