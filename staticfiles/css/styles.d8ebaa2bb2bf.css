@@ -1,0 +1,176 @@
+.yellow-background{
+    background-color: #FDE767;
+    
+}
+
+.amatic-sc-bold {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+
+  
+.roboto-flex {
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 150;
+}
+
+.amatic-sc-regular {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+}
+.nunito-sans  {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+    font-size: 28px;  
+}
+
+.card-img {
+    height: 10px;
+    width: auto; 
+    /* Ancho automático para mantener la proporción original */
+}
+
+/* grey background color */
+.hero {
+    background-color: #F6F5F2;
+    
+    width: 100%;
+}
+
+/* background photo */
+/* .hero {
+    
+    background-image: url("../img/fondo.a2cc6ff50db8.png");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+     
+} */
+
+/* Clear cart button */
+.clear-cart{
+    color: #D04848 ;
+    font: size 12px;
+    
+
+}
+
+.red_color{
+    color:  #D04848 !important;
+    font-size: 26px !important;  
+}
+
+.orange_color{
+    background-color: #F3B95F;
+}
+.yellow_color{
+    color: #FDE767;
+    
+}
+
+.blue-color{
+    color: #6895D2;
+}
+
+
+
+/* start　cart css */
+/* Estilos para el carrito desplegable */
+.dropdown-menu {
+    min-width: 250px; /* Ancho mínimo del menú desplegable */
+}
+
+.dropdown-item {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 10px; /* Espaciado interno */
+}
+
+.dropdown-item img {
+    width: 50px; /* Tamaño de la imagen */
+    height: 50px;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.dropdown-item button {
+    margin-left: auto; /* Mueve el botón a la derecha */
+}
+
+.dropdown-divider {
+    border-top: 1px solid #e5e5e5; /* Línea divisoria entre elementos */
+}
+
+/* end cart css */
+
+/* Styles to highlight the active category in the category nav bar*/
+.nav-link:hover {
+    color:  #f7b735 !important;
+}
+
+
+/* The ::after element is used to insert content after the select element , the horizontal line down the categories*/
+.navbar .nav-link:after {
+
+    /* This property is required when using (::after and ::before) element. */
+    content: '';
+   
+    width: 100%;
+
+    /* This property sets the height of the pseudo-element to 2 pixels, making it a thin horizontal line. */
+    height: 2px;
+
+    /* color of the element */
+    background-color: #F3B95F;
+    
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+}
+
+/* These styles will only be applied when the screen width is 370 pixels or less. It is to fit the image to the container*/
+@media (max-width: 370px) {
+    .custom-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+.cart-warning-message{
+    background-color: #FDE767;
+    width: 100%;
+    color: #D04848;
+} 
+
+/* grey background */
+.grey-background {
+    background-color: #F6F5F2;
+    /* height: 100%;
+    width: 100%; */
+}
+
+
+/* in the shopping cart, to maintain the same width in the product list */
+.equal-height {
+    display: flex;
+    align-items: center;
+    min-height: 70px; 
+}
+
+
+
+.product-image {
+    max-width: 100%;
+    max-height: auto; 
+    object-fit: contain; 
+}
+
