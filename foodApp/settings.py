@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import environ
 from pathlib import Path
-from decouple import config
+import dj_database_url
+
 
 # environment variables
 env = environ.Env()
@@ -37,7 +38,7 @@ SECRET_KEY = 'django-insecure-w*4oai7d#v22_9lgk3dahs$_=2fh3r^#2lnqekh*!2^*7efu%$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '127.0.0.1', 'django-food-app-wjud.onrender.com']
+ALLOWED_HOSTS = ['192.168.3.22', '127.0.0.1', 'django-food-app-wjud.onrender.com']
 
 
 # Application definition
@@ -89,16 +90,12 @@ WSGI_APPLICATION = 'foodApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('MYSQL_ADDON_DB'),
-        'USER': config('MYSQL_ADDON_USER'),
-        'PASSWORD': config('MYSQL_ADDON_PASSWORD'),
-        'HOST': config('MYSQL_ADDON_HOST'),
-        'PORT': config('MYSQL_ADDON_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-
+DATABASES['default'] = dj_database_url.parse("postgresql://django_render_ue3x_user:n5BD2LTWFZwy2BKx1GiZatVntpU2jcDB@dpg-cr2o50btq21c73fbq0r0-a.oregon-postgres.render.com/django_render_ue3x")
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
