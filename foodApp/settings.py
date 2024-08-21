@@ -33,13 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w*4oai7d#v22_9lgk3dahs$_=2fh3r^#2lnqekh*!2^*7efu%$'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.3.22', '127.0.0.1', 'django-food-app-wjud.onrender.com']
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
 # Application definition
 
@@ -95,7 +94,10 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse("postgresql://django_render_ue3x_user:n5BD2LTWFZwy2BKx1GiZatVntpU2jcDB@dpg-cr2o50btq21c73fbq0r0-a.oregon-postgres.render.com/django_render_ue3x")
+database_url = os.environ.get('DATABASE_URL')
+
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
