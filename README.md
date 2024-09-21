@@ -10,6 +10,13 @@
 4. 使用ツール & 技術
 5. 結果 & 実績
 
+## 特徴:
+Once the application is running, follow these steps:
+
+- Access the patient registration page.
+- Fill out the form with the patient's information.
+- Click "Register" to save the patient's information.
+
 
 
 
