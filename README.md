@@ -36,7 +36,9 @@
 - ユーザー体験を向上させるために、カテゴリ別フィルタリングを実装
 - ユーザーデータ、カート管理、注文処理をシームレスに対応
 
-    
+# ホームページ:
+    ![home1](https://github.com/user-attachments/assets/dc4e6450-fee6-4aa6-b0e6-ea48a657fec7)
+
     
    
     
