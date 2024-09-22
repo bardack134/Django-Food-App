@@ -1,4 +1,4 @@
-![order](https://github.com/user-attachments/assets/1dc70aa1-b481-4534-81ff-b855fe3282b3)![order](https://github.com/user-attachments/assets/354a9946-b3ce-4ce7-89fe-1928ae290128)# DJANGO 食品注文アプリ
+DJANGO 食品注文アプリ
 
 ## 説明
 このプロジェクトは、Djangoで構築されたウェブベースの食品注文アプリケーションです。ユーザーはカテゴリごとに食品を閲覧し、商品をショッピングカートに追加し、配送のために個人情報を入力して注文を行うことができます。注文が確定すると、アプリはTwilioを使用して注文の詳細をSMSでレストランに送信します。
@@ -58,6 +58,7 @@
 ![confirm order ](https://github.com/user-attachments/assets/c19a54b6-7576-4d6f-bbdb-19987035dbdf)
 
 ### レストランは注文を受ける:
+![order](https://github.com/user-attachments/assets/8da5b1ae-f682-4322-99c4-33823041bc2d)
 
 
 
