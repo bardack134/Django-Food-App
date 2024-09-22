@@ -58,7 +58,6 @@
 ![confirm order ](https://github.com/user-attachments/assets/c19a54b6-7576-4d6f-bbdb-19987035dbdf)
 
 ### レストランは注文を受ける:
-![order](https://github.com/user-attachments/assets/91db0769-7fa4-4527-bab9-cec321c3d133)
 
 
 
