@@ -37,7 +37,8 @@
 - ユーザーデータ、カート管理、注文処理をシームレスに対応
 
 ### ホームページ:
-    ![home1](https://github.com/user-attachments/assets/dc4e6450-fee6-4aa6-b0e6-ea48a657fec7)
+  ![home1](https://github.com/user-attachments/assets/d6958d67-f5df-4e87-9821-45317b6e2032)
+
 
     
    
